@@ -459,156 +459,156 @@ void xPortSysTickHandler( void )
 }
 /*-----------------------------------------------------------*/
 
-#if configUSE_TICKLESS_IDLE == 1
+//#if configUSE_TICKLESS_IDLE == 1
 
-	__weak void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
-	{
-	uint32_t ulReloadValue, ulCompleteTickPeriods, ulCompletedSysTickDecrements, ulSysTickCTRL;
-	TickType_t xModifiableIdleTime;
+//	__weak void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
+//	{
+//	uint32_t ulReloadValue, ulCompleteTickPeriods, ulCompletedSysTickDecrements, ulSysTickCTRL;
+//	TickType_t xModifiableIdleTime;
 
-		/* Make sure the SysTick reload value does not overflow the counter. */
-		if( xExpectedIdleTime > xMaximumPossibleSuppressedTicks )
-		{
-			xExpectedIdleTime = xMaximumPossibleSuppressedTicks;
-		}
+//		/* Make sure the SysTick reload value does not overflow the counter. */
+//		if( xExpectedIdleTime > xMaximumPossibleSuppressedTicks )
+//		{
+//			xExpectedIdleTime = xMaximumPossibleSuppressedTicks;
+//		}
 
-		/* Stop the SysTick momentarily.  The time the SysTick is stopped for
-		is accounted for as best it can be, but using the tickless mode will
-		inevitably result in some tiny drift of the time maintained by the
-		kernel with respect to calendar time. */
-		portNVIC_SYSTICK_CTRL_REG &= ~portNVIC_SYSTICK_ENABLE_BIT;
+//		/* Stop the SysTick momentarily.  The time the SysTick is stopped for
+//		is accounted for as best it can be, but using the tickless mode will
+//		inevitably result in some tiny drift of the time maintained by the
+//		kernel with respect to calendar time. */
+//		portNVIC_SYSTICK_CTRL_REG &= ~portNVIC_SYSTICK_ENABLE_BIT;
 
-		/* Calculate the reload value required to wait xExpectedIdleTime
-		tick periods.  -1 is used because this code will execute part way
-		through one of the tick periods. */
-		ulReloadValue = portNVIC_SYSTICK_CURRENT_VALUE_REG + ( ulTimerCountsForOneTick * ( xExpectedIdleTime - 1UL ) );
-		if( ulReloadValue > ulStoppedTimerCompensation )
-		{
-			ulReloadValue -= ulStoppedTimerCompensation;
-		}
+//		/* Calculate the reload value required to wait xExpectedIdleTime
+//		tick periods.  -1 is used because this code will execute part way
+//		through one of the tick periods. */
+//		ulReloadValue = portNVIC_SYSTICK_CURRENT_VALUE_REG + ( ulTimerCountsForOneTick * ( xExpectedIdleTime - 1UL ) );
+//		if( ulReloadValue > ulStoppedTimerCompensation )
+//		{
+//			ulReloadValue -= ulStoppedTimerCompensation;
+//		}
 
-		/* Enter a critical section but don't use the taskENTER_CRITICAL()
-		method as that will mask interrupts that should exit sleep mode. */
-		__disable_irq();
+//		/* Enter a critical section but don't use the taskENTER_CRITICAL()
+//		method as that will mask interrupts that should exit sleep mode. */
+//		__disable_irq();
 
-		/* If a context switch is pending or a task is waiting for the scheduler
-		to be unsuspended then abandon the low power entry. */
-		if( eTaskConfirmSleepModeStatus() == eAbortSleep )
-		{
-			/* Restart from whatever is left in the count register to complete
-			this tick period. */
-			portNVIC_SYSTICK_LOAD_REG = portNVIC_SYSTICK_CURRENT_VALUE_REG;
+//		/* If a context switch is pending or a task is waiting for the scheduler
+//		to be unsuspended then abandon the low power entry. */
+//		if( eTaskConfirmSleepModeStatus() == eAbortSleep )
+//		{
+//			/* Restart from whatever is left in the count register to complete
+//			this tick period. */
+//			portNVIC_SYSTICK_LOAD_REG = portNVIC_SYSTICK_CURRENT_VALUE_REG;
 
-			/* Restart SysTick. */
-			portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE_BIT;
+//			/* Restart SysTick. */
+//			portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE_BIT;
 
-			/* Reset the reload register to the value required for normal tick
-			periods. */
-			portNVIC_SYSTICK_LOAD_REG = ulTimerCountsForOneTick - 1UL;
+//			/* Reset the reload register to the value required for normal tick
+//			periods. */
+//			portNVIC_SYSTICK_LOAD_REG = ulTimerCountsForOneTick - 1UL;
 
-			/* Re-enable interrupts - see comments above __disable_irq() call
-			above. */
-			__enable_irq();
-		}
-		else
-		{
-			/* Set the new reload value. */
-			portNVIC_SYSTICK_LOAD_REG = ulReloadValue;
+//			/* Re-enable interrupts - see comments above __disable_irq() call
+//			above. */
+//			__enable_irq();
+//		}
+//		else
+//		{
+//			/* Set the new reload value. */
+//			portNVIC_SYSTICK_LOAD_REG = ulReloadValue;
 
-			/* Clear the SysTick count flag and set the count value back to
-			zero. */
-			portNVIC_SYSTICK_CURRENT_VALUE_REG = 0UL;
+//			/* Clear the SysTick count flag and set the count value back to
+//			zero. */
+//			portNVIC_SYSTICK_CURRENT_VALUE_REG = 0UL;
 
-			/* Restart SysTick. */
-			portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE_BIT;
+//			/* Restart SysTick. */
+//			portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE_BIT;
 
-			/* Sleep until something happens.  configPRE_SLEEP_PROCESSING() can
-			set its parameter to 0 to indicate that its implementation contains
-			its own wait for interrupt or wait for event instruction, and so wfi
-			should not be executed again.  However, the original expected idle
-			time variable must remain unmodified, so a copy is taken. */
-			xModifiableIdleTime = xExpectedIdleTime;
-			configPRE_SLEEP_PROCESSING( xModifiableIdleTime );
-			if( xModifiableIdleTime > 0 )
-			{
-				__dsb( portSY_FULL_READ_WRITE );
-				__wfi();
-				__isb( portSY_FULL_READ_WRITE );
-			}
-			configPOST_SLEEP_PROCESSING( xExpectedIdleTime );
+//			/* Sleep until something happens.  configPRE_SLEEP_PROCESSING() can
+//			set its parameter to 0 to indicate that its implementation contains
+//			its own wait for interrupt or wait for event instruction, and so wfi
+//			should not be executed again.  However, the original expected idle
+//			time variable must remain unmodified, so a copy is taken. */
+//			xModifiableIdleTime = xExpectedIdleTime;
+//			configPRE_SLEEP_PROCESSING( xModifiableIdleTime );
+//			if( xModifiableIdleTime > 0 )
+//			{
+//				__dsb( portSY_FULL_READ_WRITE );
+//				__wfi();
+//				__isb( portSY_FULL_READ_WRITE );
+//			}
+//			configPOST_SLEEP_PROCESSING( xExpectedIdleTime );
 
-			/* Stop SysTick.  Again, the time the SysTick is stopped for is
-			accounted for as best it can be, but using the tickless mode will
-			inevitably result in some tiny drift of the time maintained by the
-			kernel with respect to calendar time. */
-			ulSysTickCTRL = portNVIC_SYSTICK_CTRL_REG;
-			portNVIC_SYSTICK_CTRL_REG = ( ulSysTickCTRL & ~portNVIC_SYSTICK_ENABLE_BIT );
+//			/* Stop SysTick.  Again, the time the SysTick is stopped for is
+//			accounted for as best it can be, but using the tickless mode will
+//			inevitably result in some tiny drift of the time maintained by the
+//			kernel with respect to calendar time. */
+//			ulSysTickCTRL = portNVIC_SYSTICK_CTRL_REG;
+//			portNVIC_SYSTICK_CTRL_REG = ( ulSysTickCTRL & ~portNVIC_SYSTICK_ENABLE_BIT );
 
-			/* Re-enable interrupts - see comments above __disable_irq() call
-			above. */
-			__enable_irq();
+//			/* Re-enable interrupts - see comments above __disable_irq() call
+//			above. */
+//			__enable_irq();
 
-			if( ( ulSysTickCTRL & portNVIC_SYSTICK_COUNT_FLAG_BIT ) != 0 )
-			{
-				uint32_t ulCalculatedLoadValue;
+//			if( ( ulSysTickCTRL & portNVIC_SYSTICK_COUNT_FLAG_BIT ) != 0 )
+//			{
+//				uint32_t ulCalculatedLoadValue;
 
-				/* The tick interrupt has already executed, and the SysTick
-				count reloaded with ulReloadValue.  Reset the
-				portNVIC_SYSTICK_LOAD_REG with whatever remains of this tick
-				period. */
-				ulCalculatedLoadValue = ( ulTimerCountsForOneTick - 1UL ) - ( ulReloadValue - portNVIC_SYSTICK_CURRENT_VALUE_REG );
+//				/* The tick interrupt has already executed, and the SysTick
+//				count reloaded with ulReloadValue.  Reset the
+//				portNVIC_SYSTICK_LOAD_REG with whatever remains of this tick
+//				period. */
+//				ulCalculatedLoadValue = ( ulTimerCountsForOneTick - 1UL ) - ( ulReloadValue - portNVIC_SYSTICK_CURRENT_VALUE_REG );
 
-				/* Don't allow a tiny value, or values that have somehow
-				underflowed because the post sleep hook did something
-				that took too long. */
-				if( ( ulCalculatedLoadValue < ulStoppedTimerCompensation ) || ( ulCalculatedLoadValue > ulTimerCountsForOneTick ) )
-				{
-					ulCalculatedLoadValue = ( ulTimerCountsForOneTick - 1UL );
-				}
+//				/* Don't allow a tiny value, or values that have somehow
+//				underflowed because the post sleep hook did something
+//				that took too long. */
+//				if( ( ulCalculatedLoadValue < ulStoppedTimerCompensation ) || ( ulCalculatedLoadValue > ulTimerCountsForOneTick ) )
+//				{
+//					ulCalculatedLoadValue = ( ulTimerCountsForOneTick - 1UL );
+//				}
 
-				portNVIC_SYSTICK_LOAD_REG = ulCalculatedLoadValue;
+//				portNVIC_SYSTICK_LOAD_REG = ulCalculatedLoadValue;
 
-				/* The tick interrupt handler will already have pended the tick
-				processing in the kernel.  As the pending tick will be
-				processed as soon as this function exits, the tick value
-				maintained by the tick is stepped forward by one less than the
-				time spent waiting. */
-				ulCompleteTickPeriods = xExpectedIdleTime - 1UL;
-			}
-			else
-			{
-				/* Something other than the tick interrupt ended the sleep.
-				Work out how long the sleep lasted rounded to complete tick
-				periods (not the ulReload value which accounted for part
-				ticks). */
-				ulCompletedSysTickDecrements = ( xExpectedIdleTime * ulTimerCountsForOneTick ) - portNVIC_SYSTICK_CURRENT_VALUE_REG;
+//				/* The tick interrupt handler will already have pended the tick
+//				processing in the kernel.  As the pending tick will be
+//				processed as soon as this function exits, the tick value
+//				maintained by the tick is stepped forward by one less than the
+//				time spent waiting. */
+//				ulCompleteTickPeriods = xExpectedIdleTime - 1UL;
+//			}
+//			else
+//			{
+//				/* Something other than the tick interrupt ended the sleep.
+//				Work out how long the sleep lasted rounded to complete tick
+//				periods (not the ulReload value which accounted for part
+//				ticks). */
+//				ulCompletedSysTickDecrements = ( xExpectedIdleTime * ulTimerCountsForOneTick ) - portNVIC_SYSTICK_CURRENT_VALUE_REG;
 
-				/* How many complete tick periods passed while the processor
-				was waiting? */
-				ulCompleteTickPeriods = ulCompletedSysTickDecrements / ulTimerCountsForOneTick;
+//				/* How many complete tick periods passed while the processor
+//				was waiting? */
+//				ulCompleteTickPeriods = ulCompletedSysTickDecrements / ulTimerCountsForOneTick;
 
-				/* The reload value is set to whatever fraction of a single tick
-				period remains. */
-				portNVIC_SYSTICK_LOAD_REG = ( ( ulCompleteTickPeriods + 1 ) * ulTimerCountsForOneTick ) - ulCompletedSysTickDecrements;
-			}
+//				/* The reload value is set to whatever fraction of a single tick
+//				period remains. */
+//				portNVIC_SYSTICK_LOAD_REG = ( ( ulCompleteTickPeriods + 1 ) * ulTimerCountsForOneTick ) - ulCompletedSysTickDecrements;
+//			}
 
-			/* Restart SysTick so it runs from portNVIC_SYSTICK_LOAD_REG
-			again, then set portNVIC_SYSTICK_LOAD_REG back to its standard
-			value.  The critical section is used to ensure the tick interrupt
-			can only execute once in the case that the reload register is near
-			zero. */
-			portNVIC_SYSTICK_CURRENT_VALUE_REG = 0UL;
-			portENTER_CRITICAL();
-			{
-				portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE_BIT;
-				vTaskStepTick( ulCompleteTickPeriods );
-				portNVIC_SYSTICK_LOAD_REG = ulTimerCountsForOneTick - 1UL;
-			}
-			portEXIT_CRITICAL();
-		}
-	}
+//			/* Restart SysTick so it runs from portNVIC_SYSTICK_LOAD_REG
+//			again, then set portNVIC_SYSTICK_LOAD_REG back to its standard
+//			value.  The critical section is used to ensure the tick interrupt
+//			can only execute once in the case that the reload register is near
+//			zero. */
+//			portNVIC_SYSTICK_CURRENT_VALUE_REG = 0UL;
+//			portENTER_CRITICAL();
+//			{
+//				portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE_BIT;
+//				vTaskStepTick( ulCompleteTickPeriods );
+//				portNVIC_SYSTICK_LOAD_REG = ulTimerCountsForOneTick - 1UL;
+//			}
+//			portEXIT_CRITICAL();
+//		}
+//	}
 
-#endif /* #if configUSE_TICKLESS_IDLE */
+//#endif /* #if configUSE_TICKLESS_IDLE */
 
 /*-----------------------------------------------------------*/
 
@@ -621,13 +621,13 @@ void xPortSysTickHandler( void )
 	void vPortSetupTimerInterrupt( void )
 	{
 		/* Calculate the constants required to configure the tick interrupt. */
-		#if configUSE_TICKLESS_IDLE == 1
-		{
-			ulTimerCountsForOneTick = ( configSYSTICK_CLOCK_HZ / configTICK_RATE_HZ );
-			xMaximumPossibleSuppressedTicks = portMAX_24_BIT_NUMBER / ulTimerCountsForOneTick;
-			ulStoppedTimerCompensation = portMISSED_COUNTS_FACTOR / ( configCPU_CLOCK_HZ / configSYSTICK_CLOCK_HZ );
-		}
-		#endif /* configUSE_TICKLESS_IDLE */
+//		#if configUSE_TICKLESS_IDLE == 1
+//		{
+//			ulTimerCountsForOneTick = ( configSYSTICK_CLOCK_HZ / configTICK_RATE_HZ );
+//			xMaximumPossibleSuppressedTicks = portMAX_24_BIT_NUMBER / ulTimerCountsForOneTick;
+//			ulStoppedTimerCompensation = portMISSED_COUNTS_FACTOR / ( configCPU_CLOCK_HZ / configSYSTICK_CLOCK_HZ );
+//		}
+//		#endif /* configUSE_TICKLESS_IDLE */
 
 		/* Configure SysTick to interrupt at the requested rate. */
 		portNVIC_SYSTICK_LOAD_REG = ( configSYSTICK_CLOCK_HZ / configTICK_RATE_HZ ) - 1UL;

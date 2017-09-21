@@ -14,6 +14,7 @@
 #include "task.h"
 #include "queue.h"
 #include "croutine.h"
+//#include "minos.h"	                                 /* Header file for MinOS */
 
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
@@ -30,6 +31,9 @@ void Task00( void *pvParameters ) ;
   * @retval None
   */
 int main(void)
+    
+
+
 {
 
     /************* Task00 Creation ************************************************/

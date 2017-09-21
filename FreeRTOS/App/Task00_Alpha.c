@@ -16,6 +16,22 @@
 
 u32 test;
 
+struct 
+{
+    uint8_t byte0;
+    uint8_t byte1;
+    uint8_t bit0        :1;
+    uint8_t bit1        :2;
+    uint8_t bit2        :1;
+    uint8_t bita0        :1;
+    uint8_t bita1        :2;
+    uint8_t bita2        :1;
+    uint8_t bitb0        :1;
+    uint8_t bitb1        :2;
+    uint8_t bitb2        :1;
+}Test;
+
+
 /**
  * @brief		Task00 program.
  * @function  	None
@@ -35,6 +51,14 @@ void Task00( void *pvParameters )
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	GPIO_Init(GPIOC, &GPIO_InitStructure);
+    
+    Test.byte0 = 2;
+    Test.byte1 = 3;
+    Test.bit0 = 1;
+    Test.bita1 = 3;
+    Test.bit2 = 1;
+    
+    Test.bitb2 = 1;
 
 	for (;;) 
     {

@@ -465,11 +465,6 @@
               <FilePath>.\FreeRTOS\Source\port.c</FilePath>
             </File>
             <File>
-              <FileName>queue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\FreeRTOS\Source\queue.c</FilePath>
-            </File>
-            <File>
               <FileName>tasks.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\FreeRTOS\Source\tasks.c</FilePath>
