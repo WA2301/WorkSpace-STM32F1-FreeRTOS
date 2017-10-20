@@ -642,7 +642,7 @@ extern "C" {
 #endif
 
 #ifndef traceTASK_NOTIFY_GIVE_FROM_ISR
-	#define traceTASK_NOTIFY_GIVE_FROM_ISR()
+//	#define traceTASK_NOTIFY_GIVE_FROM_ISR()
 #endif
 
 #ifndef configGENERATE_RUN_TIME_STATS
@@ -664,7 +664,7 @@ extern "C" {
 #endif /* configGENERATE_RUN_TIME_STATS */
 
 #ifndef portCONFIGURE_TIMER_FOR_RUN_TIME_STATS
-	#define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS()
+//	#define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS()
 #endif
 
 #ifndef configUSE_MALLOC_FAILED_HOOK
@@ -748,11 +748,11 @@ extern "C" {
 #endif
 
 #ifndef mtCOVERAGE_TEST_DELAY
-	#define mtCOVERAGE_TEST_DELAY()
+	#define mtCOVERAGE_TEST_DELAY() 
 #endif
 
 #ifndef portASSERT_IF_IN_ISR
-	#define portASSERT_IF_IN_ISR()
+	#define portASSERT_IF_IN_ISR() 
 #endif
 
 #ifndef configUSE_PORT_OPTIMISED_TASK_SELECTION

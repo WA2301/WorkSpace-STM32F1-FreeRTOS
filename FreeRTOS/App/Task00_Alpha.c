@@ -32,6 +32,7 @@ struct
 }Test;
 
 
+portTickType xLastWakeTime = 0xFFFFFFFF - 5000;
 /**
  * @brief		Task00 program.
  * @function  	None
@@ -40,7 +41,6 @@ struct
 
 void Task00( void *pvParameters ) 
 {
-
 	GPIO_InitTypeDef GPIO_InitStructure;
 
 	/** Task Initialize *******************************************************/
@@ -67,8 +67,11 @@ void Task00( void *pvParameters )
 		test++;
 		*GPO_BAND(GPIOC_BASE, 13) ^= 1;
         
-
         vTaskDelay( 500 );
+                
+		*GPO_BAND(GPIOC_BASE, 13) ^= 1;
+        
+        vTaskDelayUntil( &xLastWakeTime , 1000 );
 		/******************************************************************************/
 	} //for
 }

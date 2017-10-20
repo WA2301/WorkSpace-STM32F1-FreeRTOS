@@ -2,69 +2,6 @@
     FreeRTOS V8.2.3 - Copyright (C) 2015 Real Time Engineers Ltd.
     All rights reserved
 
-    VISIT http://www.FreeRTOS.org TO ENSURE YOU ARE USING THE LATEST VERSION.
-
-    This file is part of the FreeRTOS distribution.
-
-    FreeRTOS is free software; you can redistribute it and/or modify it under
-    the terms of the GNU General Public License (version 2) as published by the
-    Free Software Foundation >>>> AND MODIFIED BY <<<< the FreeRTOS exception.
-
-    ***************************************************************************
-    >>!   NOTE: The modification to the GPL is included to allow you to     !<<
-    >>!   distribute a combined work that includes FreeRTOS without being   !<<
-    >>!   obliged to provide the source code for proprietary components     !<<
-    >>!   outside of the FreeRTOS kernel.                                   !<<
-    ***************************************************************************
-
-    FreeRTOS is distributed in the hope that it will be useful, but WITHOUT ANY
-    WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-    FOR A PARTICULAR PURPOSE.  Full license text is available on the following
-    link: http://www.freertos.org/a00114.html
-
-    ***************************************************************************
-     *                                                                       *
-     *    FreeRTOS provides completely free yet professionally developed,    *
-     *    robust, strictly quality controlled, supported, and cross          *
-     *    platform software that is more than just the market leader, it     *
-     *    is the industry's de facto standard.                               *
-     *                                                                       *
-     *    Help yourself get started quickly while simultaneously helping     *
-     *    to support the FreeRTOS project by purchasing a FreeRTOS           *
-     *    tutorial book, reference manual, or both:                          *
-     *    http://www.FreeRTOS.org/Documentation                              *
-     *                                                                       *
-    ***************************************************************************
-
-    http://www.FreeRTOS.org/FAQHelp.html - Having a problem?  Start by reading
-    the FAQ page "My application does not run, what could be wrong?".  Have you
-    defined configASSERT()?
-
-    http://www.FreeRTOS.org/support - In return for receiving this top quality
-    embedded software for free we request you assist our global community by
-    participating in the support forum.
-
-    http://www.FreeRTOS.org/training - Investing in training allows your team to
-    be as productive as possible as early as possible.  Now you can receive
-    FreeRTOS training directly from Richard Barry, CEO of Real Time Engineers
-    Ltd, and the world's leading authority on the world's leading RTOS.
-
-    http://www.FreeRTOS.org/plus - A selection of FreeRTOS ecosystem products,
-    including FreeRTOS+Trace - an indispensable productivity tool, a DOS
-    compatible FAT file system, and our tiny thread aware UDP/IP stack.
-
-    http://www.FreeRTOS.org/labs - Where new FreeRTOS products go to incubate.
-    Come and try FreeRTOS+TCP, our new open source TCP/IP stack for FreeRTOS.
-
-    http://www.OpenRTOS.com - Real Time Engineers ltd. license FreeRTOS to High
-    Integrity Systems ltd. to sell under the OpenRTOS brand.  Low cost OpenRTOS
-    licenses offer ticketed support, indemnification and commercial middleware.
-
-    http://www.SafeRTOS.com - High Integrity Systems also provide a safety
-    engineered and independently SIL3 certified version for use in safety and
-    mission critical applications that require provable dependability.
-
-    1 tab == 4 spaces!
 */
 
 
@@ -96,8 +33,8 @@ void vListInitialise( List_t * const pxList )
 
 	/* Write known values into the list if
 	configUSE_LIST_DATA_INTEGRITY_CHECK_BYTES is set to 1. */
-	listSET_LIST_INTEGRITY_CHECK_1_VALUE( pxList );
-	listSET_LIST_INTEGRITY_CHECK_2_VALUE( pxList );
+//	listSET_LIST_INTEGRITY_CHECK_1_VALUE( pxList );
+//	listSET_LIST_INTEGRITY_CHECK_2_VALUE( pxList );
 }
 /*-----------------------------------------------------------*/
 
@@ -120,8 +57,8 @@ ListItem_t * const pxIndex = pxList->pxIndex;
 	/* Only effective when configASSERT() is also defined, these tests may catch
 	the list data structures being overwritten in memory.  They will not catch
 	data errors caused by incorrect configuration or use of FreeRTOS. */
-	listTEST_LIST_INTEGRITY( pxList );
-	listTEST_LIST_ITEM_INTEGRITY( pxNewListItem );
+//	listTEST_LIST_INTEGRITY( pxList );
+//	listTEST_LIST_ITEM_INTEGRITY( pxNewListItem );
 
 	/* Insert a new list item into pxList, but rather than sort the list,
 	makes the new list item the last item to be removed by a call to
@@ -130,7 +67,7 @@ ListItem_t * const pxIndex = pxList->pxIndex;
 	pxNewListItem->pxPrevious = pxIndex->pxPrevious;
 
 	/* Only used during decision coverage testing. */
-	mtCOVERAGE_TEST_DELAY();
+//	mtCOVERAGE_TEST_DELAY();
 
 	pxIndex->pxPrevious->pxNext = pxNewListItem;
 	pxIndex->pxPrevious = pxNewListItem;
@@ -147,11 +84,11 @@ void vListInsert( List_t * const pxList, ListItem_t * const pxNewListItem )
 ListItem_t *pxIterator;
 const TickType_t xValueOfInsertion = pxNewListItem->xItemValue;
 
-	/* Only effective when configASSERT() is also defined, these tests may catch
-	the list data structures being overwritten in memory.  They will not catch
-	data errors caused by incorrect configuration or use of FreeRTOS. */
-	listTEST_LIST_INTEGRITY( pxList );
-	listTEST_LIST_ITEM_INTEGRITY( pxNewListItem );
+//	/* Only effective when configASSERT() is also defined, these tests may catch
+//	the list data structures being overwritten in memory.  They will not catch
+//	data errors caused by incorrect configuration or use of FreeRTOS. */
+//	listTEST_LIST_INTEGRITY( pxList );
+//	listTEST_LIST_ITEM_INTEGRITY( pxNewListItem );
 
 	/* Insert the new list item into the list, sorted in xItemValue order.
 
@@ -219,17 +156,17 @@ List_t * const pxList = ( List_t * ) pxItemToRemove->pvContainer;
 	pxItemToRemove->pxPrevious->pxNext = pxItemToRemove->pxNext;
 
 	/* Only used during decision coverage testing. */
-	mtCOVERAGE_TEST_DELAY();
+//	mtCOVERAGE_TEST_DELAY();
 
 	/* Make sure the index is left pointing to a valid item. */
 	if( pxList->pxIndex == pxItemToRemove )
 	{
 		pxList->pxIndex = pxItemToRemove->pxPrevious;
 	}
-	else
-	{
-		mtCOVERAGE_TEST_MARKER();
-	}
+//	else
+//	{
+////		mtCOVERAGE_TEST_MARKER();
+//	}
 
 	pxItemToRemove->pvContainer = NULL;
 	( pxList->uxNumberOfItems )--;
