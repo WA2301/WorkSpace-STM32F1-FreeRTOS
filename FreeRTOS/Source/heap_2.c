@@ -199,10 +199,10 @@ size_t xPortGetFreeHeapSize( void )
 }
 /*-----------------------------------------------------------*/
 
-void vPortInitialiseBlocks( void )
-{
-	/* This just exists to keep the linker quiet. */
-}
+//void vPortInitialiseBlocks( void )
+//{
+//	/* This just exists to keep the linker quiet. */
+//}
 /*-----------------------------------------------------------*/
 
 static void prvHeapInit( void )
