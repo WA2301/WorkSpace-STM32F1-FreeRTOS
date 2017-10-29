@@ -148,19 +148,9 @@ void *pvReturn = NULL;
 			}
 		}
 
-//		traceMALLOC( pvReturn, xWantedSize );
 	}
 	( void ) xTaskResumeAll();
 
-//	#if( configUSE_MALLOC_FAILED_HOOK == 1 )
-//	{
-//		if( pvReturn == NULL )
-//		{
-//			extern void vApplicationMallocFailedHook( void );
-//			vApplicationMallocFailedHook();
-//		}
-//	}
-//	#endif
 
 	return pvReturn;
 }
@@ -186,7 +176,6 @@ BlockLink_t *pxLink;
 			/* Add this block to the list of free blocks. */
 			prvInsertBlockIntoFreeList( ( ( BlockLink_t * ) pxLink ) );
 			xFreeBytesRemaining += pxLink->xBlockSize;
-//			traceFREE( pv, pxLink->xBlockSize );
 		}
 		( void ) xTaskResumeAll();
 	}
@@ -197,12 +186,6 @@ size_t xPortGetFreeHeapSize( void )
 {
 	return xFreeBytesRemaining;
 }
-/*-----------------------------------------------------------*/
-
-//void vPortInitialiseBlocks( void )
-//{
-//	/* This just exists to keep the linker quiet. */
-//}
 /*-----------------------------------------------------------*/
 
 static void prvHeapInit( void )

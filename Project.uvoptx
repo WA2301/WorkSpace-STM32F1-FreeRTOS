@@ -140,7 +140,8 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>鞃?鞈??Mt</Name>
+          <Name>l暈
+鞊??Mt</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -421,7 +422,7 @@
       <GroupNumber>4</GroupNumber>
       <FileNumber>12</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\FreeRTOS\Source\heap_2.c</PathWithFileName>
