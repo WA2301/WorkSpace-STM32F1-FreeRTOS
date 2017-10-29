@@ -113,25 +113,25 @@ static void prvTaskExitError( void );
 /*
  * The number of SysTick increments that make up one tick period.
  */
-#if configUSE_TICKLESS_IDLE == 1
-	static uint32_t ulTimerCountsForOneTick = 0;
-#endif /* configUSE_TICKLESS_IDLE */
+//#if configUSE_TICKLESS_IDLE == 1
+//	static uint32_t ulTimerCountsForOneTick = 0;
+//#endif /* configUSE_TICKLESS_IDLE */
 
 /*
  * The maximum number of tick periods that can be suppressed is limited by the
  * 24 bit resolution of the SysTick timer.
  */
-#if configUSE_TICKLESS_IDLE == 1
-	static uint32_t xMaximumPossibleSuppressedTicks = 0;
-#endif /* configUSE_TICKLESS_IDLE */
+//#if configUSE_TICKLESS_IDLE == 1
+//	static uint32_t xMaximumPossibleSuppressedTicks = 0;
+//#endif /* configUSE_TICKLESS_IDLE */
 
 /*
  * Compensate for the CPU cycles that pass while the SysTick is stopped (low
  * power functionality only.
  */
-#if configUSE_TICKLESS_IDLE == 1
-	static uint32_t ulStoppedTimerCompensation = 0;
-#endif /* configUSE_TICKLESS_IDLE */
+//#if configUSE_TICKLESS_IDLE == 1
+//	static uint32_t ulStoppedTimerCompensation = 0;
+//#endif /* configUSE_TICKLESS_IDLE */
 
 /*
  * Used by the portASSERT_IF_INTERRUPT_PRIORITY_INVALID() macro to ensure

@@ -107,89 +107,89 @@ extern "C" {
 	#endif
 #endif
 
-#ifndef INCLUDE_xTaskGetIdleTaskHandle
-	#define INCLUDE_xTaskGetIdleTaskHandle 0
-#endif
+//#ifndef INCLUDE_xTaskGetIdleTaskHandle
+//	#define INCLUDE_xTaskGetIdleTaskHandle 0
+//#endif
 
-#ifndef INCLUDE_xTimerGetTimerDaemonTaskHandle
-	#define INCLUDE_xTimerGetTimerDaemonTaskHandle 0
-#endif
+//#ifndef INCLUDE_xTimerGetTimerDaemonTaskHandle
+//	#define INCLUDE_xTimerGetTimerDaemonTaskHandle 0
+//#endif
 
-#ifndef INCLUDE_xQueueGetMutexHolder
-	#define INCLUDE_xQueueGetMutexHolder 0
-#endif
+//#ifndef INCLUDE_xQueueGetMutexHolder
+//	#define INCLUDE_xQueueGetMutexHolder 0
+//#endif
 
-#ifndef INCLUDE_xSemaphoreGetMutexHolder
-	#define INCLUDE_xSemaphoreGetMutexHolder INCLUDE_xQueueGetMutexHolder
-#endif
+//#ifndef INCLUDE_xSemaphoreGetMutexHolder
+//	#define INCLUDE_xSemaphoreGetMutexHolder INCLUDE_xQueueGetMutexHolder
+//#endif
 
-#ifndef INCLUDE_pcTaskGetTaskName
-	#define INCLUDE_pcTaskGetTaskName 0
-#endif
+//#ifndef INCLUDE_pcTaskGetTaskName
+//	#define INCLUDE_pcTaskGetTaskName 0
+//#endif
 
-#ifndef configUSE_APPLICATION_TASK_TAG
-	#define configUSE_APPLICATION_TASK_TAG 0
-#endif
+//#ifndef configUSE_APPLICATION_TASK_TAG
+//	#define configUSE_APPLICATION_TASK_TAG 0
+//#endif
 
-#ifndef configNUM_THREAD_LOCAL_STORAGE_POINTERS
-	#define configNUM_THREAD_LOCAL_STORAGE_POINTERS 0
-#endif
+//#ifndef configNUM_THREAD_LOCAL_STORAGE_POINTERS
+//	#define configNUM_THREAD_LOCAL_STORAGE_POINTERS 0
+//#endif
 
-#ifndef INCLUDE_uxTaskGetStackHighWaterMark
-	#define INCLUDE_uxTaskGetStackHighWaterMark 0
-#endif
+//#ifndef INCLUDE_uxTaskGetStackHighWaterMark
+//	#define INCLUDE_uxTaskGetStackHighWaterMark 0
+//#endif
 
-#ifndef INCLUDE_eTaskGetState
-	#define INCLUDE_eTaskGetState 0
-#endif
+//#ifndef INCLUDE_eTaskGetState
+//	#define INCLUDE_eTaskGetState 0
+//#endif
 
-#ifndef configUSE_RECURSIVE_MUTEXES
-	#define configUSE_RECURSIVE_MUTEXES 0
-#endif
+//#ifndef configUSE_RECURSIVE_MUTEXES
+//	#define configUSE_RECURSIVE_MUTEXES 0
+//#endif
 
-#ifndef configUSE_MUTEXES
-	#define configUSE_MUTEXES 0
-#endif
+//#ifndef configUSE_MUTEXES
+//	#define configUSE_MUTEXES 0
+//#endif
 
-#ifndef configUSE_TIMERS
-	#define configUSE_TIMERS 0
-#endif
+//#ifndef configUSE_TIMERS
+//	#define configUSE_TIMERS 0
+//#endif
 
-#ifndef configUSE_COUNTING_SEMAPHORES
-	#define configUSE_COUNTING_SEMAPHORES 0
-#endif
+//#ifndef configUSE_COUNTING_SEMAPHORES
+//	#define configUSE_COUNTING_SEMAPHORES 0
+//#endif
 
-#ifndef configUSE_ALTERNATIVE_API
-	#define configUSE_ALTERNATIVE_API 0
-#endif
+//#ifndef configUSE_ALTERNATIVE_API
+//	#define configUSE_ALTERNATIVE_API 0
+//#endif
 
-#ifndef portCRITICAL_NESTING_IN_TCB
-	#define portCRITICAL_NESTING_IN_TCB 0
-#endif
+//#ifndef portCRITICAL_NESTING_IN_TCB
+//	#define portCRITICAL_NESTING_IN_TCB 0
+//#endif
 
-#ifndef configMAX_TASK_NAME_LEN
-	#define configMAX_TASK_NAME_LEN 16
-#endif
+//#ifndef configMAX_TASK_NAME_LEN
+//	#define configMAX_TASK_NAME_LEN 16
+//#endif
 
-#ifndef configIDLE_SHOULD_YIELD
-	#define configIDLE_SHOULD_YIELD		1
-#endif
+//#ifndef configIDLE_SHOULD_YIELD
+//	#define configIDLE_SHOULD_YIELD		1
+//#endif
 
-#if configMAX_TASK_NAME_LEN < 1
-	#error configMAX_TASK_NAME_LEN must be set to a minimum of 1 in FreeRTOSConfig.h
-#endif
+//#if configMAX_TASK_NAME_LEN < 1
+//	#error configMAX_TASK_NAME_LEN must be set to a minimum of 1 in FreeRTOSConfig.h
+//#endif
 
-#ifndef INCLUDE_xTaskResumeFromISR
-	#define INCLUDE_xTaskResumeFromISR 1
-#endif
+//#ifndef INCLUDE_xTaskResumeFromISR
+//	#define INCLUDE_xTaskResumeFromISR 1
+//#endif
 
-#ifndef INCLUDE_xEventGroupSetBitFromISR
-	#define INCLUDE_xEventGroupSetBitFromISR 0
-#endif
+//#ifndef INCLUDE_xEventGroupSetBitFromISR
+//	#define INCLUDE_xEventGroupSetBitFromISR 0
+//#endif
 
-#ifndef INCLUDE_xTimerPendFunctionCall
-	#define INCLUDE_xTimerPendFunctionCall 0
-#endif
+//#ifndef INCLUDE_xTimerPendFunctionCall
+//	#define INCLUDE_xTimerPendFunctionCall 0
+//#endif
 
 //#ifndef configASSERT
 //	#define configASSERT( x )
@@ -198,30 +198,30 @@ extern "C" {
 //	#define configASSERT_DEFINED 1
 //#endif
 
-/* The timers module relies on xTaskGetSchedulerState(). */
-#if configUSE_TIMERS == 1
+///* The timers module relies on xTaskGetSchedulerState(). */
+//#if configUSE_TIMERS == 1
 
-	#ifndef configTIMER_TASK_PRIORITY
-		#error If configUSE_TIMERS is set to 1 then configTIMER_TASK_PRIORITY must also be defined.
-	#endif /* configTIMER_TASK_PRIORITY */
+//	#ifndef configTIMER_TASK_PRIORITY
+//		#error If configUSE_TIMERS is set to 1 then configTIMER_TASK_PRIORITY must also be defined.
+//	#endif /* configTIMER_TASK_PRIORITY */
 
-	#ifndef configTIMER_QUEUE_LENGTH
-		#error If configUSE_TIMERS is set to 1 then configTIMER_QUEUE_LENGTH must also be defined.
-	#endif /* configTIMER_QUEUE_LENGTH */
+//	#ifndef configTIMER_QUEUE_LENGTH
+//		#error If configUSE_TIMERS is set to 1 then configTIMER_QUEUE_LENGTH must also be defined.
+//	#endif /* configTIMER_QUEUE_LENGTH */
 
-	#ifndef configTIMER_TASK_STACK_DEPTH
-		#error If configUSE_TIMERS is set to 1 then configTIMER_TASK_STACK_DEPTH must also be defined.
-	#endif /* configTIMER_TASK_STACK_DEPTH */
+//	#ifndef configTIMER_TASK_STACK_DEPTH
+//		#error If configUSE_TIMERS is set to 1 then configTIMER_TASK_STACK_DEPTH must also be defined.
+//	#endif /* configTIMER_TASK_STACK_DEPTH */
 
-#endif /* configUSE_TIMERS */
+//#endif /* configUSE_TIMERS */
 
-#ifndef INCLUDE_xTaskGetSchedulerState
-	#define INCLUDE_xTaskGetSchedulerState 0
-#endif
+//#ifndef INCLUDE_xTaskGetSchedulerState
+//	#define INCLUDE_xTaskGetSchedulerState 0
+//#endif
 
-#ifndef INCLUDE_xTaskGetCurrentTaskHandle
-	#define INCLUDE_xTaskGetCurrentTaskHandle 0
-#endif
+//#ifndef INCLUDE_xTaskGetCurrentTaskHandle
+//	#define INCLUDE_xTaskGetCurrentTaskHandle 0
+//#endif
 
 
 #ifndef portSET_INTERRUPT_MASK_FROM_ISR
@@ -257,79 +257,79 @@ extern "C" {
 	#define portPOINTER_SIZE_TYPE uint32_t
 #endif
 
-/* Remove any unused trace macros. */
-#ifndef traceSTART
-	/* Used to perform any necessary initialisation - for example, open a file
-	into which trace is to be written. */
-	#define traceSTART()
-#endif
+///* Remove any unused trace macros. */
+//#ifndef traceSTART
+//	/* Used to perform any necessary initialisation - for example, open a file
+//	into which trace is to be written. */
+//	#define traceSTART()
+//#endif
 
-#ifndef traceEND
-	/* Use to close a trace, for example close a file into which trace has been
-	written. */
-	#define traceEND()
-#endif
+//#ifndef traceEND
+//	/* Use to close a trace, for example close a file into which trace has been
+//	written. */
+//	#define traceEND()
+//#endif
 
-#ifndef traceTASK_SWITCHED_IN
-	/* Called after a task has been selected to run.  pxCurrentTCB holds a pointer
-	to the task control block of the selected task. */
-	#define traceTASK_SWITCHED_IN()
-#endif
+//#ifndef traceTASK_SWITCHED_IN
+//	/* Called after a task has been selected to run.  pxCurrentTCB holds a pointer
+//	to the task control block of the selected task. */
+//	#define traceTASK_SWITCHED_IN()
+//#endif
 
-#ifndef traceINCREASE_TICK_COUNT
-	/* Called before stepping the tick count after waking from tickless idle
-	sleep. */
-	#define traceINCREASE_TICK_COUNT( x )
-#endif
+//#ifndef traceINCREASE_TICK_COUNT
+//	/* Called before stepping the tick count after waking from tickless idle
+//	sleep. */
+//	#define traceINCREASE_TICK_COUNT( x )
+//#endif
 
-#ifndef traceLOW_POWER_IDLE_BEGIN
-	/* Called immediately before entering tickless idle. */
-	#define traceLOW_POWER_IDLE_BEGIN()
-#endif
+//#ifndef traceLOW_POWER_IDLE_BEGIN
+//	/* Called immediately before entering tickless idle. */
+//	#define traceLOW_POWER_IDLE_BEGIN()
+//#endif
 
-#ifndef	traceLOW_POWER_IDLE_END
-	/* Called when returning to the Idle task after a tickless idle. */
-	#define traceLOW_POWER_IDLE_END()
-#endif
+//#ifndef	traceLOW_POWER_IDLE_END
+//	/* Called when returning to the Idle task after a tickless idle. */
+//	#define traceLOW_POWER_IDLE_END()
+//#endif
 
-#ifndef traceTASK_SWITCHED_OUT
-	/* Called before a task has been selected to run.  pxCurrentTCB holds a pointer
-	to the task control block of the task being switched out. */
-	#define traceTASK_SWITCHED_OUT()
-#endif
+//#ifndef traceTASK_SWITCHED_OUT
+//	/* Called before a task has been selected to run.  pxCurrentTCB holds a pointer
+//	to the task control block of the task being switched out. */
+//	#define traceTASK_SWITCHED_OUT()
+//#endif
 
-#ifndef traceTASK_PRIORITY_INHERIT
-	/* Called when a task attempts to take a mutex that is already held by a
-	lower priority task.  pxTCBOfMutexHolder is a pointer to the TCB of the task
-	that holds the mutex.  uxInheritedPriority is the priority the mutex holder
-	will inherit (the priority of the task that is attempting to obtain the
-	muted. */
-	#define traceTASK_PRIORITY_INHERIT( pxTCBOfMutexHolder, uxInheritedPriority )
-#endif
+//#ifndef traceTASK_PRIORITY_INHERIT
+//	/* Called when a task attempts to take a mutex that is already held by a
+//	lower priority task.  pxTCBOfMutexHolder is a pointer to the TCB of the task
+//	that holds the mutex.  uxInheritedPriority is the priority the mutex holder
+//	will inherit (the priority of the task that is attempting to obtain the
+//	muted. */
+//	#define traceTASK_PRIORITY_INHERIT( pxTCBOfMutexHolder, uxInheritedPriority )
+//#endif
 
-#ifndef traceTASK_PRIORITY_DISINHERIT
-	/* Called when a task releases a mutex, the holding of which had resulted in
-	the task inheriting the priority of a higher priority task.
-	pxTCBOfMutexHolder is a pointer to the TCB of the task that is releasing the
-	mutex.  uxOriginalPriority is the task's configured (base) priority. */
-	#define traceTASK_PRIORITY_DISINHERIT( pxTCBOfMutexHolder, uxOriginalPriority )
-#endif
+//#ifndef traceTASK_PRIORITY_DISINHERIT
+//	/* Called when a task releases a mutex, the holding of which had resulted in
+//	the task inheriting the priority of a higher priority task.
+//	pxTCBOfMutexHolder is a pointer to the TCB of the task that is releasing the
+//	mutex.  uxOriginalPriority is the task's configured (base) priority. */
+//	#define traceTASK_PRIORITY_DISINHERIT( pxTCBOfMutexHolder, uxOriginalPriority )
+//#endif
 
-#ifndef traceBLOCKING_ON_QUEUE_RECEIVE
-	/* Task is about to block because it cannot read from a
-	queue/mutex/semaphore.  pxQueue is a pointer to the queue/mutex/semaphore
-	upon which the read was attempted.  pxCurrentTCB points to the TCB of the
-	task that attempted the read. */
-	#define traceBLOCKING_ON_QUEUE_RECEIVE( pxQueue )
-#endif
+//#ifndef traceBLOCKING_ON_QUEUE_RECEIVE
+//	/* Task is about to block because it cannot read from a
+//	queue/mutex/semaphore.  pxQueue is a pointer to the queue/mutex/semaphore
+//	upon which the read was attempted.  pxCurrentTCB points to the TCB of the
+//	task that attempted the read. */
+//	#define traceBLOCKING_ON_QUEUE_RECEIVE( pxQueue )
+//#endif
 
-#ifndef traceBLOCKING_ON_QUEUE_SEND
-	/* Task is about to block because it cannot write to a
-	queue/mutex/semaphore.  pxQueue is a pointer to the queue/mutex/semaphore
-	upon which the write was attempted.  pxCurrentTCB points to the TCB of the
-	task that attempted the write. */
-	#define traceBLOCKING_ON_QUEUE_SEND( pxQueue )
-#endif
+//#ifndef traceBLOCKING_ON_QUEUE_SEND
+//	/* Task is about to block because it cannot write to a
+//	queue/mutex/semaphore.  pxQueue is a pointer to the queue/mutex/semaphore
+//	upon which the write was attempted.  pxCurrentTCB points to the TCB of the
+//	task that attempted the write. */
+//	#define traceBLOCKING_ON_QUEUE_SEND( pxQueue )
+//#endif
 
 #ifndef configCHECK_FOR_STACK_OVERFLOW
 	#define configCHECK_FOR_STACK_OVERFLOW 0
@@ -603,9 +603,9 @@ extern "C" {
 //	#define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS()
 #endif
 
-#ifndef configUSE_MALLOC_FAILED_HOOK
-	#define configUSE_MALLOC_FAILED_HOOK 0
-#endif
+//#ifndef configUSE_MALLOC_FAILED_HOOK
+//	#define configUSE_MALLOC_FAILED_HOOK 0
+//#endif
 
 #ifndef portPRIVILEGE_BIT
 	#define portPRIVILEGE_BIT ( ( UBaseType_t ) 0x00 )
@@ -635,61 +635,61 @@ extern "C" {
 	#error configEXPECTED_IDLE_TIME_BEFORE_SLEEP must not be less than 2
 #endif
 
-#ifndef configUSE_TICKLESS_IDLE
-	#define configUSE_TICKLESS_IDLE 0
-#endif
+//#ifndef configUSE_TICKLESS_IDLE
+//	#define configUSE_TICKLESS_IDLE 0
+//#endif
 
-#ifndef configPRE_SLEEP_PROCESSING
-	#define configPRE_SLEEP_PROCESSING( x )
-#endif
+//#ifndef configPRE_SLEEP_PROCESSING
+//	#define configPRE_SLEEP_PROCESSING( x )
+//#endif
 
-#ifndef configPOST_SLEEP_PROCESSING
-	#define configPOST_SLEEP_PROCESSING( x )
-#endif
+//#ifndef configPOST_SLEEP_PROCESSING
+//	#define configPOST_SLEEP_PROCESSING( x )
+//#endif
 
-#ifndef configUSE_QUEUE_SETS
-	#define configUSE_QUEUE_SETS 0
-#endif
+//#ifndef configUSE_QUEUE_SETS
+//	#define configUSE_QUEUE_SETS 0
+//#endif
 
-#ifndef portTASK_USES_FLOATING_POINT
-	#define portTASK_USES_FLOATING_POINT()
-#endif
+//#ifndef portTASK_USES_FLOATING_POINT
+//	#define portTASK_USES_FLOATING_POINT()
+//#endif
 
 #ifndef configUSE_TIME_SLICING
 	#define configUSE_TIME_SLICING 1
 #endif
 
-#ifndef configINCLUDE_APPLICATION_DEFINED_PRIVILEGED_FUNCTIONS
-	#define configINCLUDE_APPLICATION_DEFINED_PRIVILEGED_FUNCTIONS 0
-#endif
+//#ifndef configINCLUDE_APPLICATION_DEFINED_PRIVILEGED_FUNCTIONS
+//	#define configINCLUDE_APPLICATION_DEFINED_PRIVILEGED_FUNCTIONS 0
+//#endif
 
-#ifndef configUSE_NEWLIB_REENTRANT
-	#define configUSE_NEWLIB_REENTRANT 0
-#endif
+//#ifndef configUSE_NEWLIB_REENTRANT
+//	#define configUSE_NEWLIB_REENTRANT 0
+//#endif
 
-#ifndef configUSE_STATS_FORMATTING_FUNCTIONS
-	#define configUSE_STATS_FORMATTING_FUNCTIONS 0
-#endif
+//#ifndef configUSE_STATS_FORMATTING_FUNCTIONS
+//	#define configUSE_STATS_FORMATTING_FUNCTIONS 0
+//#endif
 
-#ifndef portASSERT_IF_INTERRUPT_PRIORITY_INVALID
-	#define portASSERT_IF_INTERRUPT_PRIORITY_INVALID()
-#endif
+//#ifndef portASSERT_IF_INTERRUPT_PRIORITY_INVALID
+//	#define portASSERT_IF_INTERRUPT_PRIORITY_INVALID()
+//#endif
 
 #ifndef configUSE_TRACE_FACILITY
 	#define configUSE_TRACE_FACILITY 0
 #endif
 
-#ifndef mtCOVERAGE_TEST_MARKER
-	#define mtCOVERAGE_TEST_MARKER()
-#endif
+//#ifndef mtCOVERAGE_TEST_MARKER
+//	#define mtCOVERAGE_TEST_MARKER()
+//#endif
 
-#ifndef mtCOVERAGE_TEST_DELAY
-	#define mtCOVERAGE_TEST_DELAY() 
-#endif
+//#ifndef mtCOVERAGE_TEST_DELAY
+//	#define mtCOVERAGE_TEST_DELAY() 
+//#endif
 
-#ifndef portASSERT_IF_IN_ISR
-	#define portASSERT_IF_IN_ISR() 
-#endif
+//#ifndef portASSERT_IF_IN_ISR
+//	#define portASSERT_IF_IN_ISR() 
+//#endif
 
 #ifndef configUSE_PORT_OPTIMISED_TASK_SELECTION
 	#define configUSE_PORT_OPTIMISED_TASK_SELECTION 0

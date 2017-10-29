@@ -1073,39 +1073,39 @@ so the following two prototypes will cause a compilation error.  This can be
 fixed by simply guarding against the inclusion of these two prototypes unless
 they are explicitly required by the configUSE_APPLICATION_TASK_TAG configuration
 constant. */
-#ifdef configUSE_APPLICATION_TASK_TAG
-	#if configUSE_APPLICATION_TASK_TAG == 1
-		/**
-		 * task.h
-		 * <pre>void vTaskSetApplicationTaskTag( TaskHandle_t xTask, TaskHookFunction_t pxHookFunction );</pre>
-		 *
-		 * Sets pxHookFunction to be the task hook function used by the task xTask.
-		 * Passing xTask as NULL has the effect of setting the calling tasks hook
-		 * function.
-		 */
-		void vTaskSetApplicationTaskTag( TaskHandle_t xTask, TaskHookFunction_t pxHookFunction ) PRIVILEGED_FUNCTION;
+//#ifdef configUSE_APPLICATION_TASK_TAG
+//	#if configUSE_APPLICATION_TASK_TAG == 1
+//		/**
+//		 * task.h
+//		 * <pre>void vTaskSetApplicationTaskTag( TaskHandle_t xTask, TaskHookFunction_t pxHookFunction );</pre>
+//		 *
+//		 * Sets pxHookFunction to be the task hook function used by the task xTask.
+//		 * Passing xTask as NULL has the effect of setting the calling tasks hook
+//		 * function.
+//		 */
+//		void vTaskSetApplicationTaskTag( TaskHandle_t xTask, TaskHookFunction_t pxHookFunction ) PRIVILEGED_FUNCTION;
 
-		/**
-		 * task.h
-		 * <pre>void xTaskGetApplicationTaskTag( TaskHandle_t xTask );</pre>
-		 *
-		 * Returns the pxHookFunction value assigned to the task xTask.
-		 */
-		TaskHookFunction_t xTaskGetApplicationTaskTag( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-	#endif /* configUSE_APPLICATION_TASK_TAG ==1 */
-#endif /* ifdef configUSE_APPLICATION_TASK_TAG */
+//		/**
+//		 * task.h
+//		 * <pre>void xTaskGetApplicationTaskTag( TaskHandle_t xTask );</pre>
+//		 *
+//		 * Returns the pxHookFunction value assigned to the task xTask.
+//		 */
+//		TaskHookFunction_t xTaskGetApplicationTaskTag( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+//	#endif /* configUSE_APPLICATION_TASK_TAG ==1 */
+//#endif /* ifdef configUSE_APPLICATION_TASK_TAG */
 
-#if( configNUM_THREAD_LOCAL_STORAGE_POINTERS > 0 )
+//#if( configNUM_THREAD_LOCAL_STORAGE_POINTERS > 0 )
 
-	/* Each task contains an array of pointers that is dimensioned by the
-	configNUM_THREAD_LOCAL_STORAGE_POINTERS setting in FreeRTOSConfig.h.  The
-	kernel does not use the pointers itself, so the application writer can use
-	the pointers for any purpose they wish.  The following two functions are
-	used to set and query a pointer respectively. */
-	void vTaskSetThreadLocalStoragePointer( TaskHandle_t xTaskToSet, BaseType_t xIndex, void *pvValue ) PRIVILEGED_FUNCTION;
-	void *pvTaskGetThreadLocalStoragePointer( TaskHandle_t xTaskToQuery, BaseType_t xIndex ) PRIVILEGED_FUNCTION;
+//	/* Each task contains an array of pointers that is dimensioned by the
+//	configNUM_THREAD_LOCAL_STORAGE_POINTERS setting in FreeRTOSConfig.h.  The
+//	kernel does not use the pointers itself, so the application writer can use
+//	the pointers for any purpose they wish.  The following two functions are
+//	used to set and query a pointer respectively. */
+//	void vTaskSetThreadLocalStoragePointer( TaskHandle_t xTaskToSet, BaseType_t xIndex, void *pvValue ) PRIVILEGED_FUNCTION;
+//	void *pvTaskGetThreadLocalStoragePointer( TaskHandle_t xTaskToQuery, BaseType_t xIndex ) PRIVILEGED_FUNCTION;
 
-#endif
+//#endif
 
 /**
  * task.h
