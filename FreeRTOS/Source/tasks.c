@@ -307,7 +307,7 @@ count overflows. */
  * the task.  It is inserted at the end of the list.
  */
 #define prvAddTaskToReadyList( pxTCB )																\
-	traceMOVED_TASK_TO_READY_STATE( pxTCB );														\
+	/*traceMOVED_TASK_TO_READY_STATE( pxTCB );	*/													\
 	taskRECORD_READY_PRIORITY( ( pxTCB )->uxPriority );												\
 	vListInsertEnd( &( pxReadyTasksLists[ ( pxTCB )->uxPriority ] ), &( ( pxTCB )->xGenericListItem ) )
 /*-----------------------------------------------------------*/
@@ -491,7 +491,7 @@ StackType_t *pxTopOfStack;
 
 			uxTaskNumber++;
 
-			traceTASK_CREATE( pxNewTCB );
+//			traceTASK_CREATE( pxNewTCB );
 
 			prvAddTaskToReadyList( pxNewTCB );
 
@@ -503,7 +503,7 @@ StackType_t *pxTopOfStack;
 	else
 	{
 		xReturn = errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY;
-		traceTASK_CREATE_FAILED();
+//		traceTASK_CREATE_FAILED();
 	}
 
 	if( xReturn == pdPASS )
@@ -572,7 +572,7 @@ StackType_t *pxTopOfStack;
 
 			if( xShouldDelay != pdFALSE )
 			{
-				traceTASK_DELAY_UNTIL();
+//				traceTASK_DELAY_UNTIL();
 
 				/* Remove the task from the ready list before adding it to the
 				blocked list as the same list item is used for both lists. */
@@ -616,7 +616,7 @@ StackType_t *pxTopOfStack;
 //			configASSERT( uxSchedulerSuspended == 0 );
 			vTaskSuspendAll();
 			{
-				traceTASK_DELAY();
+//				traceTASK_DELAY();
 
 				/* A task that is removed from the event list while the
 				scheduler is suspended will not get placed in the ready
@@ -863,7 +863,7 @@ BaseType_t xSwitchRequired = pdFALSE;
 	/* Called by the portable layer each time a tick interrupt occurs.
 	Increments the tick then checks to see if the new tick value will cause any
 	tasks to be unblocked. */
-	traceTASK_INCREMENT_TICK( xTickCount );
+//	traceTASK_INCREMENT_TICK( xTickCount );
 	if( uxSchedulerSuspended == ( UBaseType_t ) pdFALSE )
 	{
 		/* Increment the RTOS tick, switching the delayed and overflowed
@@ -1439,18 +1439,18 @@ TCB_t *pxTCB;
 
 /*-----------------------------------------------------------*/
 
-TickType_t uxTaskResetEventItemValue( void )
-{
-TickType_t uxReturn;
+//TickType_t uxTaskResetEventItemValue( void )
+//{
+//TickType_t uxReturn;
 
-	uxReturn = listGET_LIST_ITEM_VALUE( &( pxCurrentTCB->xEventListItem ) );
+//	uxReturn = listGET_LIST_ITEM_VALUE( &( pxCurrentTCB->xEventListItem ) );
 
-	/* Reset the event list item to its normal value - so it can be used with
-	queues and semaphores. */
-	listSET_LIST_ITEM_VALUE( &( pxCurrentTCB->xEventListItem ), ( ( TickType_t ) configMAX_PRIORITIES - ( TickType_t ) pxCurrentTCB->uxPriority ) ); /*lint !e961 MISRA exception as the casts are only redundant for some ports. */
+//	/* Reset the event list item to its normal value - so it can be used with
+//	queues and semaphores. */
+//	listSET_LIST_ITEM_VALUE( &( pxCurrentTCB->xEventListItem ), ( ( TickType_t ) configMAX_PRIORITIES - ( TickType_t ) pxCurrentTCB->uxPriority ) ); /*lint !e961 MISRA exception as the casts are only redundant for some ports. */
 
-	return uxReturn;
-}
+//	return uxReturn;
+//}
 /*-----------------------------------------------------------*/
 
 

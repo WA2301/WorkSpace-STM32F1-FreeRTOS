@@ -337,249 +337,249 @@ extern "C" {
 
 /* The following event macros are embedded in the kernel API calls. */
 
-#ifndef traceMOVED_TASK_TO_READY_STATE
-	#define traceMOVED_TASK_TO_READY_STATE( pxTCB )
-#endif
+//#ifndef traceMOVED_TASK_TO_READY_STATE
+//	#define traceMOVED_TASK_TO_READY_STATE( pxTCB )
+//#endif
 
-#ifndef traceQUEUE_CREATE
-	#define traceQUEUE_CREATE( pxNewQueue )
-#endif
+//#ifndef traceQUEUE_CREATE
+//	#define traceQUEUE_CREATE( pxNewQueue )
+//#endif
 
-#ifndef traceQUEUE_CREATE_FAILED
-	#define traceQUEUE_CREATE_FAILED( ucQueueType )
-#endif
+//#ifndef traceQUEUE_CREATE_FAILED
+//	#define traceQUEUE_CREATE_FAILED( ucQueueType )
+//#endif
 
-#ifndef traceCREATE_MUTEX
-	#define traceCREATE_MUTEX( pxNewQueue )
-#endif
+//#ifndef traceCREATE_MUTEX
+//	#define traceCREATE_MUTEX( pxNewQueue )
+//#endif
 
-#ifndef traceCREATE_MUTEX_FAILED
-	#define traceCREATE_MUTEX_FAILED()
-#endif
+//#ifndef traceCREATE_MUTEX_FAILED
+//	#define traceCREATE_MUTEX_FAILED()
+//#endif
 
-#ifndef traceGIVE_MUTEX_RECURSIVE
-	#define traceGIVE_MUTEX_RECURSIVE( pxMutex )
-#endif
+//#ifndef traceGIVE_MUTEX_RECURSIVE
+//	#define traceGIVE_MUTEX_RECURSIVE( pxMutex )
+//#endif
 
-#ifndef traceGIVE_MUTEX_RECURSIVE_FAILED
-	#define traceGIVE_MUTEX_RECURSIVE_FAILED( pxMutex )
-#endif
+//#ifndef traceGIVE_MUTEX_RECURSIVE_FAILED
+//	#define traceGIVE_MUTEX_RECURSIVE_FAILED( pxMutex )
+//#endif
 
-#ifndef traceTAKE_MUTEX_RECURSIVE
-	#define traceTAKE_MUTEX_RECURSIVE( pxMutex )
-#endif
+//#ifndef traceTAKE_MUTEX_RECURSIVE
+//	#define traceTAKE_MUTEX_RECURSIVE( pxMutex )
+//#endif
 
-#ifndef traceTAKE_MUTEX_RECURSIVE_FAILED
-	#define traceTAKE_MUTEX_RECURSIVE_FAILED( pxMutex )
-#endif
+//#ifndef traceTAKE_MUTEX_RECURSIVE_FAILED
+//	#define traceTAKE_MUTEX_RECURSIVE_FAILED( pxMutex )
+//#endif
 
-#ifndef traceCREATE_COUNTING_SEMAPHORE
-	#define traceCREATE_COUNTING_SEMAPHORE()
-#endif
+//#ifndef traceCREATE_COUNTING_SEMAPHORE
+//	#define traceCREATE_COUNTING_SEMAPHORE()
+//#endif
 
-#ifndef traceCREATE_COUNTING_SEMAPHORE_FAILED
-	#define traceCREATE_COUNTING_SEMAPHORE_FAILED()
-#endif
+//#ifndef traceCREATE_COUNTING_SEMAPHORE_FAILED
+//	#define traceCREATE_COUNTING_SEMAPHORE_FAILED()
+//#endif
 
-#ifndef traceQUEUE_SEND
-	#define traceQUEUE_SEND( pxQueue )
-#endif
+//#ifndef traceQUEUE_SEND
+//	#define traceQUEUE_SEND( pxQueue )
+//#endif
 
-#ifndef traceQUEUE_SEND_FAILED
-	#define traceQUEUE_SEND_FAILED( pxQueue )
-#endif
+//#ifndef traceQUEUE_SEND_FAILED
+//	#define traceQUEUE_SEND_FAILED( pxQueue )
+//#endif
 
-#ifndef traceQUEUE_RECEIVE
-	#define traceQUEUE_RECEIVE( pxQueue )
-#endif
+//#ifndef traceQUEUE_RECEIVE
+//	#define traceQUEUE_RECEIVE( pxQueue )
+//#endif
 
-#ifndef traceQUEUE_PEEK
-	#define traceQUEUE_PEEK( pxQueue )
-#endif
+//#ifndef traceQUEUE_PEEK
+//	#define traceQUEUE_PEEK( pxQueue )
+//#endif
 
-#ifndef traceQUEUE_PEEK_FROM_ISR
-	#define traceQUEUE_PEEK_FROM_ISR( pxQueue )
-#endif
+//#ifndef traceQUEUE_PEEK_FROM_ISR
+//	#define traceQUEUE_PEEK_FROM_ISR( pxQueue )
+//#endif
 
-#ifndef traceQUEUE_RECEIVE_FAILED
-	#define traceQUEUE_RECEIVE_FAILED( pxQueue )
-#endif
+//#ifndef traceQUEUE_RECEIVE_FAILED
+//	#define traceQUEUE_RECEIVE_FAILED( pxQueue )
+//#endif
 
-#ifndef traceQUEUE_SEND_FROM_ISR
-	#define traceQUEUE_SEND_FROM_ISR( pxQueue )
-#endif
+//#ifndef traceQUEUE_SEND_FROM_ISR
+//	#define traceQUEUE_SEND_FROM_ISR( pxQueue )
+//#endif
 
-#ifndef traceQUEUE_SEND_FROM_ISR_FAILED
-	#define traceQUEUE_SEND_FROM_ISR_FAILED( pxQueue )
-#endif
+//#ifndef traceQUEUE_SEND_FROM_ISR_FAILED
+//	#define traceQUEUE_SEND_FROM_ISR_FAILED( pxQueue )
+//#endif
 
-#ifndef traceQUEUE_RECEIVE_FROM_ISR
-	#define traceQUEUE_RECEIVE_FROM_ISR( pxQueue )
-#endif
+//#ifndef traceQUEUE_RECEIVE_FROM_ISR
+//	#define traceQUEUE_RECEIVE_FROM_ISR( pxQueue )
+//#endif
 
-#ifndef traceQUEUE_RECEIVE_FROM_ISR_FAILED
-	#define traceQUEUE_RECEIVE_FROM_ISR_FAILED( pxQueue )
-#endif
+//#ifndef traceQUEUE_RECEIVE_FROM_ISR_FAILED
+//	#define traceQUEUE_RECEIVE_FROM_ISR_FAILED( pxQueue )
+//#endif
 
-#ifndef traceQUEUE_PEEK_FROM_ISR_FAILED
-	#define traceQUEUE_PEEK_FROM_ISR_FAILED( pxQueue )
-#endif
+//#ifndef traceQUEUE_PEEK_FROM_ISR_FAILED
+//	#define traceQUEUE_PEEK_FROM_ISR_FAILED( pxQueue )
+//#endif
 
-#ifndef traceQUEUE_DELETE
-	#define traceQUEUE_DELETE( pxQueue )
-#endif
+//#ifndef traceQUEUE_DELETE
+//	#define traceQUEUE_DELETE( pxQueue )
+//#endif
 
-#ifndef traceTASK_CREATE
-	#define traceTASK_CREATE( pxNewTCB )
-#endif
+//#ifndef traceTASK_CREATE
+//	#define traceTASK_CREATE( pxNewTCB )
+//#endif
 
-#ifndef traceTASK_CREATE_FAILED
-	#define traceTASK_CREATE_FAILED()
-#endif
+//#ifndef traceTASK_CREATE_FAILED
+//	#define traceTASK_CREATE_FAILED()
+//#endif
 
-#ifndef traceTASK_DELETE
-	#define traceTASK_DELETE( pxTaskToDelete )
-#endif
+//#ifndef traceTASK_DELETE
+//	#define traceTASK_DELETE( pxTaskToDelete )
+//#endif
 
-#ifndef traceTASK_DELAY_UNTIL
-	#define traceTASK_DELAY_UNTIL()
-#endif
+//#ifndef traceTASK_DELAY_UNTIL
+//	#define traceTASK_DELAY_UNTIL()
+//#endif
 
-#ifndef traceTASK_DELAY
-	#define traceTASK_DELAY()
-#endif
+//#ifndef traceTASK_DELAY
+//	#define traceTASK_DELAY()
+//#endif
 
-#ifndef traceTASK_PRIORITY_SET
-	#define traceTASK_PRIORITY_SET( pxTask, uxNewPriority )
-#endif
+//#ifndef traceTASK_PRIORITY_SET
+//	#define traceTASK_PRIORITY_SET( pxTask, uxNewPriority )
+//#endif
 
-#ifndef traceTASK_SUSPEND
-	#define traceTASK_SUSPEND( pxTaskToSuspend )
-#endif
+//#ifndef traceTASK_SUSPEND
+//	#define traceTASK_SUSPEND( pxTaskToSuspend )
+//#endif
 
-#ifndef traceTASK_RESUME
-	#define traceTASK_RESUME( pxTaskToResume )
-#endif
+//#ifndef traceTASK_RESUME
+//	#define traceTASK_RESUME( pxTaskToResume )
+//#endif
 
-#ifndef traceTASK_RESUME_FROM_ISR
-	#define traceTASK_RESUME_FROM_ISR( pxTaskToResume )
-#endif
+//#ifndef traceTASK_RESUME_FROM_ISR
+//	#define traceTASK_RESUME_FROM_ISR( pxTaskToResume )
+//#endif
 
-#ifndef traceTASK_INCREMENT_TICK
-	#define traceTASK_INCREMENT_TICK( xTickCount )
-#endif
+//#ifndef traceTASK_INCREMENT_TICK
+//	#define traceTASK_INCREMENT_TICK( xTickCount )
+//#endif
 
-#ifndef traceTIMER_CREATE
-	#define traceTIMER_CREATE( pxNewTimer )
-#endif
+//#ifndef traceTIMER_CREATE
+//	#define traceTIMER_CREATE( pxNewTimer )
+//#endif
 
-#ifndef traceTIMER_CREATE_FAILED
-	#define traceTIMER_CREATE_FAILED()
-#endif
+//#ifndef traceTIMER_CREATE_FAILED
+//	#define traceTIMER_CREATE_FAILED()
+//#endif
 
-#ifndef traceTIMER_COMMAND_SEND
-	#define traceTIMER_COMMAND_SEND( xTimer, xMessageID, xMessageValueValue, xReturn )
-#endif
+//#ifndef traceTIMER_COMMAND_SEND
+//	#define traceTIMER_COMMAND_SEND( xTimer, xMessageID, xMessageValueValue, xReturn )
+//#endif
 
-#ifndef traceTIMER_EXPIRED
-	#define traceTIMER_EXPIRED( pxTimer )
-#endif
+//#ifndef traceTIMER_EXPIRED
+//	#define traceTIMER_EXPIRED( pxTimer )
+//#endif
 
-#ifndef traceTIMER_COMMAND_RECEIVED
-	#define traceTIMER_COMMAND_RECEIVED( pxTimer, xMessageID, xMessageValue )
-#endif
+//#ifndef traceTIMER_COMMAND_RECEIVED
+//	#define traceTIMER_COMMAND_RECEIVED( pxTimer, xMessageID, xMessageValue )
+//#endif
 
-#ifndef traceMALLOC
-    #define traceMALLOC( pvAddress, uiSize )
-#endif
+//#ifndef traceMALLOC
+//    #define traceMALLOC( pvAddress, uiSize )
+//#endif
 
-#ifndef traceFREE
-    #define traceFREE( pvAddress, uiSize )
-#endif
+//#ifndef traceFREE
+//    #define traceFREE( pvAddress, uiSize )
+//#endif
 
-#ifndef traceEVENT_GROUP_CREATE
-	#define traceEVENT_GROUP_CREATE( xEventGroup )
-#endif
+//#ifndef traceEVENT_GROUP_CREATE
+//	#define traceEVENT_GROUP_CREATE( xEventGroup )
+//#endif
 
-#ifndef traceEVENT_GROUP_CREATE_FAILED
-	#define traceEVENT_GROUP_CREATE_FAILED()
-#endif
+//#ifndef traceEVENT_GROUP_CREATE_FAILED
+//	#define traceEVENT_GROUP_CREATE_FAILED()
+//#endif
 
-#ifndef traceEVENT_GROUP_SYNC_BLOCK
-	#define traceEVENT_GROUP_SYNC_BLOCK( xEventGroup, uxBitsToSet, uxBitsToWaitFor )
-#endif
+//#ifndef traceEVENT_GROUP_SYNC_BLOCK
+//	#define traceEVENT_GROUP_SYNC_BLOCK( xEventGroup, uxBitsToSet, uxBitsToWaitFor )
+//#endif
 
-#ifndef traceEVENT_GROUP_SYNC_END
-	#define traceEVENT_GROUP_SYNC_END( xEventGroup, uxBitsToSet, uxBitsToWaitFor, xTimeoutOccurred ) ( void ) xTimeoutOccurred
-#endif
+//#ifndef traceEVENT_GROUP_SYNC_END
+//	#define traceEVENT_GROUP_SYNC_END( xEventGroup, uxBitsToSet, uxBitsToWaitFor, xTimeoutOccurred ) ( void ) xTimeoutOccurred
+//#endif
 
-#ifndef traceEVENT_GROUP_WAIT_BITS_BLOCK
-	#define traceEVENT_GROUP_WAIT_BITS_BLOCK( xEventGroup, uxBitsToWaitFor )
-#endif
+//#ifndef traceEVENT_GROUP_WAIT_BITS_BLOCK
+//	#define traceEVENT_GROUP_WAIT_BITS_BLOCK( xEventGroup, uxBitsToWaitFor )
+//#endif
 
-#ifndef traceEVENT_GROUP_WAIT_BITS_END
-	#define traceEVENT_GROUP_WAIT_BITS_END( xEventGroup, uxBitsToWaitFor, xTimeoutOccurred ) ( void ) xTimeoutOccurred
-#endif
+//#ifndef traceEVENT_GROUP_WAIT_BITS_END
+//	#define traceEVENT_GROUP_WAIT_BITS_END( xEventGroup, uxBitsToWaitFor, xTimeoutOccurred ) ( void ) xTimeoutOccurred
+//#endif
 
-#ifndef traceEVENT_GROUP_CLEAR_BITS
-	#define traceEVENT_GROUP_CLEAR_BITS( xEventGroup, uxBitsToClear )
-#endif
+//#ifndef traceEVENT_GROUP_CLEAR_BITS
+//	#define traceEVENT_GROUP_CLEAR_BITS( xEventGroup, uxBitsToClear )
+//#endif
 
-#ifndef traceEVENT_GROUP_CLEAR_BITS_FROM_ISR
-	#define traceEVENT_GROUP_CLEAR_BITS_FROM_ISR( xEventGroup, uxBitsToClear )
-#endif
+//#ifndef traceEVENT_GROUP_CLEAR_BITS_FROM_ISR
+//	#define traceEVENT_GROUP_CLEAR_BITS_FROM_ISR( xEventGroup, uxBitsToClear )
+//#endif
 
-#ifndef traceEVENT_GROUP_SET_BITS
-	#define traceEVENT_GROUP_SET_BITS( xEventGroup, uxBitsToSet )
-#endif
+//#ifndef traceEVENT_GROUP_SET_BITS
+//	#define traceEVENT_GROUP_SET_BITS( xEventGroup, uxBitsToSet )
+//#endif
 
-#ifndef traceEVENT_GROUP_SET_BITS_FROM_ISR
-	#define traceEVENT_GROUP_SET_BITS_FROM_ISR( xEventGroup, uxBitsToSet )
-#endif
+//#ifndef traceEVENT_GROUP_SET_BITS_FROM_ISR
+//	#define traceEVENT_GROUP_SET_BITS_FROM_ISR( xEventGroup, uxBitsToSet )
+//#endif
 
-#ifndef traceEVENT_GROUP_DELETE
-	#define traceEVENT_GROUP_DELETE( xEventGroup )
-#endif
+//#ifndef traceEVENT_GROUP_DELETE
+//	#define traceEVENT_GROUP_DELETE( xEventGroup )
+//#endif
 
-#ifndef tracePEND_FUNC_CALL
-	#define tracePEND_FUNC_CALL(xFunctionToPend, pvParameter1, ulParameter2, ret)
-#endif
+//#ifndef tracePEND_FUNC_CALL
+//	#define tracePEND_FUNC_CALL(xFunctionToPend, pvParameter1, ulParameter2, ret)
+//#endif
 
-#ifndef tracePEND_FUNC_CALL_FROM_ISR
-	#define tracePEND_FUNC_CALL_FROM_ISR(xFunctionToPend, pvParameter1, ulParameter2, ret)
-#endif
+//#ifndef tracePEND_FUNC_CALL_FROM_ISR
+//	#define tracePEND_FUNC_CALL_FROM_ISR(xFunctionToPend, pvParameter1, ulParameter2, ret)
+//#endif
 
-#ifndef traceQUEUE_REGISTRY_ADD
-	#define traceQUEUE_REGISTRY_ADD(xQueue, pcQueueName)
-#endif
+//#ifndef traceQUEUE_REGISTRY_ADD
+//	#define traceQUEUE_REGISTRY_ADD(xQueue, pcQueueName)
+//#endif
 
-#ifndef traceTASK_NOTIFY_TAKE_BLOCK
-	#define traceTASK_NOTIFY_TAKE_BLOCK()
-#endif
+//#ifndef traceTASK_NOTIFY_TAKE_BLOCK
+//	#define traceTASK_NOTIFY_TAKE_BLOCK()
+//#endif
 
-#ifndef traceTASK_NOTIFY_TAKE
-	#define traceTASK_NOTIFY_TAKE()
-#endif
+//#ifndef traceTASK_NOTIFY_TAKE
+//	#define traceTASK_NOTIFY_TAKE()
+//#endif
 
-#ifndef traceTASK_NOTIFY_WAIT_BLOCK
-	#define traceTASK_NOTIFY_WAIT_BLOCK()
-#endif
+//#ifndef traceTASK_NOTIFY_WAIT_BLOCK
+//	#define traceTASK_NOTIFY_WAIT_BLOCK()
+//#endif
 
-#ifndef traceTASK_NOTIFY_WAIT
-	#define traceTASK_NOTIFY_WAIT()
-#endif
+//#ifndef traceTASK_NOTIFY_WAIT
+//	#define traceTASK_NOTIFY_WAIT()
+//#endif
 
-#ifndef traceTASK_NOTIFY
-	#define traceTASK_NOTIFY()
-#endif
+//#ifndef traceTASK_NOTIFY
+//	#define traceTASK_NOTIFY()
+//#endif
 
-#ifndef traceTASK_NOTIFY_FROM_ISR
-	#define traceTASK_NOTIFY_FROM_ISR()
-#endif
+//#ifndef traceTASK_NOTIFY_FROM_ISR
+//	#define traceTASK_NOTIFY_FROM_ISR()
+//#endif
 
-#ifndef traceTASK_NOTIFY_GIVE_FROM_ISR
-//	#define traceTASK_NOTIFY_GIVE_FROM_ISR()
-#endif
+//#ifndef traceTASK_NOTIFY_GIVE_FROM_ISR
+////	#define traceTASK_NOTIFY_GIVE_FROM_ISR()
+//#endif
 
 #ifndef configGENERATE_RUN_TIME_STATS
 	#define configGENERATE_RUN_TIME_STATS 0
