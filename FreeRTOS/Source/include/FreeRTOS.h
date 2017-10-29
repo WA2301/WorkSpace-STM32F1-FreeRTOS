@@ -191,12 +191,12 @@ extern "C" {
 	#define INCLUDE_xTimerPendFunctionCall 0
 #endif
 
-#ifndef configASSERT
-	#define configASSERT( x )
-	#define configASSERT_DEFINED 0
-#else
-	#define configASSERT_DEFINED 1
-#endif
+//#ifndef configASSERT
+//	#define configASSERT( x )
+//	#define configASSERT_DEFINED 0
+//#else
+//	#define configASSERT_DEFINED 1
+//#endif
 
 /* The timers module relies on xTaskGetSchedulerState(). */
 #if configUSE_TIMERS == 1

@@ -265,7 +265,6 @@ PRIVILEGED_DATA static volatile UBaseType_t uxSchedulerSuspended	= ( UBaseType_t
 																									\
 		/* Find the highest priority queue that contains ready tasks. */							\
 		portGET_HIGHEST_PRIORITY( uxTopPriority, uxTopReadyPriority );								\
-		configASSERT( listCURRENT_LIST_LENGTH( &( pxReadyTasksLists[ uxTopPriority ] ) ) > 0 );		\
 		listGET_OWNER_OF_NEXT_ENTRY( pxCurrentTCB, &( pxReadyTasksLists[ uxTopPriority ] ) );		\
 	} /* taskSELECT_HIGHEST_PRIORITY_TASK() */
 
@@ -293,7 +292,6 @@ count overflows. */
 	List_t *pxTemp;																					\
 																									\
 	/* The delayed tasks list should be empty when the lists are switched. */						\
-	configASSERT( ( listLIST_IS_EMPTY( pxDelayedTaskList ) ) );										\
 																									\
 	pxTemp = pxDelayedTaskList;																		\
 	pxDelayedTaskList = pxOverflowDelayedTaskList;													\
@@ -415,8 +413,8 @@ BaseType_t xReturn;
 TCB_t * pxNewTCB;
 StackType_t *pxTopOfStack;
 
-	configASSERT( pxTaskCode );
-	configASSERT( ( ( uxPriority & ( UBaseType_t ) ( ~portPRIVILEGE_BIT ) ) < ( UBaseType_t ) configMAX_PRIORITIES ) );
+//	configASSERT( pxTaskCode );
+//	configASSERT( ( ( uxPriority & ( UBaseType_t ) ( ~portPRIVILEGE_BIT ) ) < ( UBaseType_t ) configMAX_PRIORITIES ) );
 
 	/* Allocate the memory required by the TCB and stack for the new task,
 	checking that the allocation was successful. */
@@ -533,9 +531,9 @@ StackType_t *pxTopOfStack;
 	TickType_t xTimeToWake;
 	BaseType_t xAlreadyYielded, xShouldDelay = pdFALSE;
 
-		configASSERT( pxPreviousWakeTime );
-		configASSERT( ( xTimeIncrement > 0U ) );
-		configASSERT( uxSchedulerSuspended == 0 );
+//		configASSERT( pxPreviousWakeTime );
+//		configASSERT( ( xTimeIncrement > 0U ) );
+//		configASSERT( uxSchedulerSuspended == 0 );
 
 		vTaskSuspendAll();
 		{
@@ -615,7 +613,7 @@ StackType_t *pxTopOfStack;
 		/* A delay time of zero just forces a reschedule. */
 		if( xTicksToDelay > ( TickType_t ) 0U )
 		{
-			configASSERT( uxSchedulerSuspended == 0 );
+//			configASSERT( uxSchedulerSuspended == 0 );
 			vTaskSuspendAll();
 			{
 				traceTASK_DELAY();
@@ -729,7 +727,7 @@ BaseType_t xAlreadyYielded = pdFALSE;
 
 	/* If uxSchedulerSuspended is zero then this function does not match a
 	previous call to vTaskSuspendAll(). */
-	configASSERT( uxSchedulerSuspended );
+//	configASSERT( uxSchedulerSuspended );
 
 	/* It is possible that an ISR caused a task to be removed from an event
 	list while the scheduler was suspended.  If this was the case then the
@@ -1020,7 +1018,7 @@ void vTaskPlaceOnEventList( List_t * const pxEventList, const TickType_t xTicksT
 {
 TickType_t xTimeToWake;
 
-	configASSERT( pxEventList );
+//	configASSERT( pxEventList );
 
 	/* THIS FUNCTION MUST BE CALLED WITH EITHER INTERRUPTS DISABLED OR THE
 	SCHEDULER SUSPENDED AND THE QUEUE BEING ACCESSED LOCKED. */
@@ -1054,11 +1052,11 @@ void vTaskPlaceOnUnorderedEventList( List_t * pxEventList, const TickType_t xIte
 {
 TickType_t xTimeToWake;
 
-	configASSERT( pxEventList );
+//	configASSERT( pxEventList );
 
 	/* THIS FUNCTION MUST BE CALLED WITH THE SCHEDULER SUSPENDED.  It is used by
 	the event groups implementation. */
-	configASSERT( uxSchedulerSuspended != 0 );
+//	configASSERT( uxSchedulerSuspended != 0 );
 
 	/* Store the item value in the event list item.  It is safe to access the
 	event list item here as interrupts won't access the event list item of a
@@ -1113,7 +1111,7 @@ BaseType_t xReturn;
 	This function assumes that a check has already been made to ensure that
 	pxEventList is not empty. */
 	pxUnblockedTCB = ( TCB_t * ) listGET_OWNER_OF_HEAD_ENTRY( pxEventList );
-	configASSERT( pxUnblockedTCB );
+//	configASSERT( pxUnblockedTCB );
 	( void ) uxListRemove( &( pxUnblockedTCB->xEventListItem ) );
 
 	if( uxSchedulerSuspended == ( UBaseType_t ) pdFALSE )
@@ -1157,7 +1155,7 @@ BaseType_t xReturn;
 
 	/* THIS FUNCTION MUST BE CALLED WITH THE SCHEDULER SUSPENDED.  It is used by
 	the event flags implementation. */
-	configASSERT( uxSchedulerSuspended != pdFALSE );
+//	configASSERT( uxSchedulerSuspended != pdFALSE );
 
 	/* Store the new item value in the event list. */
 	listSET_LIST_ITEM_VALUE( pxEventListItem, xItemValue | taskEVENT_LIST_ITEM_VALUE_IN_USE );
@@ -1165,7 +1163,7 @@ BaseType_t xReturn;
 	/* Remove the event list form the event flag.  Interrupts do not access
 	event flags. */
 	pxUnblockedTCB = ( TCB_t * ) listGET_LIST_ITEM_OWNER( pxEventListItem );
-	configASSERT( pxUnblockedTCB );
+//	configASSERT( pxUnblockedTCB );
 	( void ) uxListRemove( pxEventListItem );
 
 	/* Remove the task from the delayed list and add it to the ready list.  The
@@ -1197,7 +1195,7 @@ BaseType_t xReturn;
 
 void vTaskSetTimeOutState( TimeOut_t * const pxTimeOut )
 {
-	configASSERT( pxTimeOut );
+//	configASSERT( pxTimeOut );
 	pxTimeOut->xOverflowCount = xNumOfOverflows;
 	pxTimeOut->xTimeOnEntering = xTickCount;
 }
@@ -1207,8 +1205,8 @@ BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut, TickType_t * const
 {
 BaseType_t xReturn;
 
-	configASSERT( pxTimeOut );
-	configASSERT( pxTicksToWait );
+//	configASSERT( pxTimeOut );
+//	configASSERT( pxTicksToWait );
 
 	taskENTER_CRITICAL();
 	{
