@@ -108,41 +108,6 @@ static void prvStartFirstTask( void );
  */
 static void prvTaskExitError( void );
 
-/*-----------------------------------------------------------*/
-
-/*
- * The number of SysTick increments that make up one tick period.
- */
-//#if configUSE_TICKLESS_IDLE == 1
-//	static uint32_t ulTimerCountsForOneTick = 0;
-//#endif /* configUSE_TICKLESS_IDLE */
-
-/*
- * The maximum number of tick periods that can be suppressed is limited by the
- * 24 bit resolution of the SysTick timer.
- */
-//#if configUSE_TICKLESS_IDLE == 1
-//	static uint32_t xMaximumPossibleSuppressedTicks = 0;
-//#endif /* configUSE_TICKLESS_IDLE */
-
-/*
- * Compensate for the CPU cycles that pass while the SysTick is stopped (low
- * power functionality only.
- */
-//#if configUSE_TICKLESS_IDLE == 1
-//	static uint32_t ulStoppedTimerCompensation = 0;
-//#endif /* configUSE_TICKLESS_IDLE */
-
-/*
- * Used by the portASSERT_IF_INTERRUPT_PRIORITY_INVALID() macro to ensure
- * FreeRTOS API functions are not called from interrupts that have been assigned
- * a priority above configMAX_SYSCALL_INTERRUPT_PRIORITY.
- */
-#if ( configASSERT_DEFINED == 1 )
-	 static uint8_t ucMaxSysCallPriority = 0;
-	 static uint32_t ulMaxPRIGROUPValue = 0;
-	 static const volatile uint8_t * const pcInterruptPriorityRegisters = ( uint8_t * ) portNVIC_IP_REGISTERS_OFFSET_16;
-#endif /* configASSERT_DEFINED */
 
 /*-----------------------------------------------------------*/
 
@@ -245,14 +210,6 @@ BaseType_t xPortStartScheduler( void )
 
 	/* Should not get here! */
 	return 0;
-}
-/*-----------------------------------------------------------*/
-
-void vPortEndScheduler( void )
-{
-	/* Not implemented in ports where there is nothing to return to.
-	Artificially force an assert. */
-//	configASSERT( uxCriticalNesting == 1000UL );
 }
 /*-----------------------------------------------------------*/
 
@@ -382,13 +339,13 @@ __asm void vPortClearInterruptMask( uint32_t ulNewMask )
 }
 /*-----------------------------------------------------------*/
 
-__asm uint32_t vPortGetIPSR( void )
-{
-	PRESERVE8
+//__asm uint32_t vPortGetIPSR( void )
+//{
+//	PRESERVE8
 
-	mrs r0, ipsr
-	bx r14
-}
+//	mrs r0, ipsr
+//	bx r14
+//}
 /*-----------------------------------------------------------*/
 
 

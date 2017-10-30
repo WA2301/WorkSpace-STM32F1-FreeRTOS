@@ -17,14 +17,19 @@
 extern "C" {
 #endif
 
-/*-----------------------------------------------------------
- * MACROS AND DEFINITIONS
- *----------------------------------------------------------*/
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-#define tskKERNEL_VERSION_NUMBER "V8.2.3"
-#define tskKERNEL_VERSION_MAJOR 8
-#define tskKERNEL_VERSION_MINOR 2
-#define tskKERNEL_VERSION_BUILD 3
 
 /**
  * task. h
@@ -42,7 +47,7 @@ typedef void * TaskHandle_t;
  * Defines the prototype to which the application task hook function must
  * conform.
  */
-typedef BaseType_t (*TaskHookFunction_t)( void * );
+//typedef BaseType_t (*TaskHookFunction_t)( void * );
 
 /* Task states returned by eTaskGetState. */
 typedef enum
@@ -83,19 +88,6 @@ typedef struct xMEMORY_REGION
 	uint32_t ulParameters;
 } MemoryRegion_t;
 
-/*
- * Parameters required to create an MPU protected task.
- */
-typedef struct xTASK_PARAMETERS
-{
-	TaskFunction_t pvTaskCode;
-	const char * const pcName;	/*lint !e971 Unqualified char types are allowed for strings and single characters only. */
-	uint16_t usStackDepth;
-	void *pvParameters;
-	UBaseType_t uxPriority;
-	StackType_t *puxStackBuffer;
-	MemoryRegion_t xRegions[ portNUM_CONFIGURABLE_REGIONS ];
-} TaskParameters_t;
 
 /* Used with the uxTaskGetSystemState() function to return the state of each task
 in the system. */
@@ -199,44 +191,25 @@ is used in assert() statements. */
 #define xTaskCreateRestricted( x, pxCreatedTask ) xTaskGenericCreate( ((x)->pvTaskCode), ((x)->pcName), ((x)->usStackDepth), ((x)->pvParameters), ((x)->uxPriority), (pxCreatedTask), ((x)->puxStackBuffer), ((x)->xRegions) )
 
 
-void vTaskDelay( const TickType_t xTicksToDelay ) PRIVILEGED_FUNCTION;
+void vTaskDelay( const TickType_t xTicksToDelay ) ;
 
-void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
+void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) ;
 
-void vTaskStartScheduler( void ) PRIVILEGED_FUNCTION;
-
-
-
-void vTaskSuspendAll( void ) PRIVILEGED_FUNCTION;
-
-BaseType_t xTaskResumeAll( void ) PRIVILEGED_FUNCTION;
+void vTaskStartScheduler( void ) ;
 
 
-BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue ) PRIVILEGED_FUNCTION;
-#define xTaskNotify( xTaskToNotify, ulValue, eAction ) xTaskGenericNotify( ( xTaskToNotify ), ( ulValue ), ( eAction ), NULL )
-#define xTaskNotifyAndQuery( xTaskToNotify, ulValue, eAction, pulPreviousNotifyValue ) xTaskGenericNotify( ( xTaskToNotify ), ( ulValue ), ( eAction ), ( pulPreviousNotifyValue ) )
 
-BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
-#define xTaskNotifyFromISR( xTaskToNotify, ulValue, eAction, pxHigherPriorityTaskWoken ) xTaskGenericNotifyFromISR( ( xTaskToNotify ), ( ulValue ), ( eAction ), NULL, ( pxHigherPriorityTaskWoken ) )
-#define xTaskNotifyAndQueryFromISR( xTaskToNotify, ulValue, eAction, pulPreviousNotificationValue, pxHigherPriorityTaskWoken ) xTaskGenericNotifyFromISR( ( xTaskToNotify ), ( ulValue ), ( eAction ), ( pulPreviousNotificationValue ), ( pxHigherPriorityTaskWoken ) )
+void vTaskSuspendAll( void ) ;
 
-BaseType_t xTaskNotifyWait( uint32_t ulBitsToClearOnEntry, uint32_t ulBitsToClearOnExit, uint32_t *pulNotificationValue, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+BaseType_t xTaskResumeAll( void ) ;
 
-#define xTaskNotifyGive( xTaskToNotify ) xTaskGenericNotify( ( xTaskToNotify ), ( 0 ), eIncrement, NULL )
-
-void vTaskNotifyGiveFromISR( TaskHandle_t xTaskToNotify, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
-
-uint32_t ulTaskNotifyTake( BaseType_t xClearCountOnExit, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-
-BaseType_t xTaskNotifyStateClear( TaskHandle_t xTask );
-
-BaseType_t xTaskIncrementTick( void ) PRIVILEGED_FUNCTION;
+BaseType_t xTaskIncrementTick( void ) ;
 
 /*
  * Generic version of the task creation function which is in turn called by the
  * xTaskCreate() and xTaskCreateRestricted() macros.
  */
-BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) ; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
 
 
 #ifdef __cplusplus
