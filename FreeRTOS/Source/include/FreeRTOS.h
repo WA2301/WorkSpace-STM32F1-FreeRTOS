@@ -77,21 +77,21 @@ typedef void (*TaskFunction_t)( void * );
 	#error Missing definition:  configUSE_PREEMPTION must be defined in FreeRTOSConfig.h as either 1 or 0.  See the Configuration section of the FreeRTOS API documentation for details.
 #endif
 
-#ifndef configUSE_IDLE_HOOK
-	#error Missing definition:  configUSE_IDLE_HOOK must be defined in FreeRTOSConfig.h as either 1 or 0.  See the Configuration section of the FreeRTOS API documentation for details.
-#endif
+//#ifndef configUSE_IDLE_HOOK
+//	#error Missing definition:  configUSE_IDLE_HOOK must be defined in FreeRTOSConfig.h as either 1 or 0.  See the Configuration section of the FreeRTOS API documentation for details.
+//#endif
 
-#ifndef configUSE_TICK_HOOK
-	#error Missing definition:  configUSE_TICK_HOOK must be defined in FreeRTOSConfig.h as either 1 or 0.  See the Configuration section of the FreeRTOS API documentation for details.
-#endif
+//#ifndef configUSE_TICK_HOOK
+//	#error Missing definition:  configUSE_TICK_HOOK must be defined in FreeRTOSConfig.h as either 1 or 0.  See the Configuration section of the FreeRTOS API documentation for details.
+//#endif
 
-#ifndef INCLUDE_vTaskPrioritySet
-	#error Missing definition:  INCLUDE_vTaskPrioritySet must be defined in FreeRTOSConfig.h as either 1 or 0.  See the Configuration section of the FreeRTOS API documentation for details.
-#endif
+//#ifndef INCLUDE_vTaskPrioritySet
+//	#error Missing definition:  INCLUDE_vTaskPrioritySet must be defined in FreeRTOSConfig.h as either 1 or 0.  See the Configuration section of the FreeRTOS API documentation for details.
+//#endif
 
-#ifndef INCLUDE_uxTaskPriorityGet
-	#error Missing definition:  INCLUDE_uxTaskPriorityGet must be defined in FreeRTOSConfig.h as either 1 or 0.  See the Configuration section of the FreeRTOS API documentation for details.
-#endif
+//#ifndef INCLUDE_uxTaskPriorityGet
+//	#error Missing definition:  INCLUDE_uxTaskPriorityGet must be defined in FreeRTOSConfig.h as either 1 or 0.  See the Configuration section of the FreeRTOS API documentation for details.
+//#endif
 
 #ifndef INCLUDE_vTaskDelete
 	#error Missing definition:  INCLUDE_vTaskDelete must be defined in FreeRTOSConfig.h as either 1 or 0.  See the Configuration section of the FreeRTOS API documentation for details.
@@ -148,42 +148,42 @@ typedef void (*TaskFunction_t)( void * );
 	#define portSETUP_TCB( pxTCB ) ( void ) pxTCB
 #endif
 
-#ifndef configQUEUE_REGISTRY_SIZE
-	#define configQUEUE_REGISTRY_SIZE 0U
-#endif
+//#ifndef configQUEUE_REGISTRY_SIZE
+//	#define configQUEUE_REGISTRY_SIZE 0U
+//#endif
 
-#if ( configQUEUE_REGISTRY_SIZE < 1 )
-	#define vQueueAddToRegistry( xQueue, pcName )
-	#define vQueueUnregisterQueue( xQueue )
-#endif
+//#if ( configQUEUE_REGISTRY_SIZE < 1 )
+//	#define vQueueAddToRegistry( xQueue, pcName )
+//	#define vQueueUnregisterQueue( xQueue )
+//#endif
 
 #ifndef portPOINTER_SIZE_TYPE
 	#define portPOINTER_SIZE_TYPE uint32_t
 #endif
 
 
-#ifndef configCHECK_FOR_STACK_OVERFLOW
-	#define configCHECK_FOR_STACK_OVERFLOW 0
-#endif
+//#ifndef configCHECK_FOR_STACK_OVERFLOW
+//	#define configCHECK_FOR_STACK_OVERFLOW 0
+//#endif
 
 
-#ifndef configGENERATE_RUN_TIME_STATS
-	#define configGENERATE_RUN_TIME_STATS 0
-#endif
+//#ifndef configGENERATE_RUN_TIME_STATS
+//	#define configGENERATE_RUN_TIME_STATS 0
+//#endif
 
-#if ( configGENERATE_RUN_TIME_STATS == 1 )
+//#if ( configGENERATE_RUN_TIME_STATS == 1 )
 
-	#ifndef portCONFIGURE_TIMER_FOR_RUN_TIME_STATS
-		#error If configGENERATE_RUN_TIME_STATS is defined then portCONFIGURE_TIMER_FOR_RUN_TIME_STATS must also be defined.  portCONFIGURE_TIMER_FOR_RUN_TIME_STATS should call a port layer function to setup a peripheral timer/counter that can then be used as the run time counter time base.
-	#endif /* portCONFIGURE_TIMER_FOR_RUN_TIME_STATS */
+//	#ifndef portCONFIGURE_TIMER_FOR_RUN_TIME_STATS
+//		#error If configGENERATE_RUN_TIME_STATS is defined then portCONFIGURE_TIMER_FOR_RUN_TIME_STATS must also be defined.  portCONFIGURE_TIMER_FOR_RUN_TIME_STATS should call a port layer function to setup a peripheral timer/counter that can then be used as the run time counter time base.
+//	#endif /* portCONFIGURE_TIMER_FOR_RUN_TIME_STATS */
 
-	#ifndef portGET_RUN_TIME_COUNTER_VALUE
-		#ifndef portALT_GET_RUN_TIME_COUNTER_VALUE
-			#error If configGENERATE_RUN_TIME_STATS is defined then either portGET_RUN_TIME_COUNTER_VALUE or portALT_GET_RUN_TIME_COUNTER_VALUE must also be defined.  See the examples provided and the FreeRTOS web site for more information.
-		#endif /* portALT_GET_RUN_TIME_COUNTER_VALUE */
-	#endif /* portGET_RUN_TIME_COUNTER_VALUE */
+//	#ifndef portGET_RUN_TIME_COUNTER_VALUE
+//		#ifndef portALT_GET_RUN_TIME_COUNTER_VALUE
+//			#error If configGENERATE_RUN_TIME_STATS is defined then either portGET_RUN_TIME_COUNTER_VALUE or portALT_GET_RUN_TIME_COUNTER_VALUE must also be defined.  See the examples provided and the FreeRTOS web site for more information.
+//		#endif /* portALT_GET_RUN_TIME_COUNTER_VALUE */
+//	#endif /* portGET_RUN_TIME_COUNTER_VALUE */
 
-#endif /* configGENERATE_RUN_TIME_STATS */
+//#endif /* configGENERATE_RUN_TIME_STATS */
 
 
 #ifndef portPRIVILEGE_BIT
@@ -223,29 +223,29 @@ typedef void (*TaskFunction_t)( void * );
 	#define configAPPLICATION_ALLOCATED_HEAP 0
 #endif
 
-#ifndef configUSE_TASK_NOTIFICATIONS
-	#define configUSE_TASK_NOTIFICATIONS 1
-#endif
+//#ifndef configUSE_TASK_NOTIFICATIONS
+//	#define configUSE_TASK_NOTIFICATIONS 1
+//#endif
 
-#ifndef portTICK_TYPE_IS_ATOMIC
-	#define portTICK_TYPE_IS_ATOMIC 0
-#endif
+//#ifndef portTICK_TYPE_IS_ATOMIC
+//	#define portTICK_TYPE_IS_ATOMIC 0
+//#endif
 
 #if( portTICK_TYPE_IS_ATOMIC == 0 )
 	/* Either variables of tick type cannot be read atomically, or
 	portTICK_TYPE_IS_ATOMIC was not set - map the critical sections used when
 	the tick count is returned to the standard critical section macros. */
-	#define portTICK_TYPE_ENTER_CRITICAL() portENTER_CRITICAL()
-	#define portTICK_TYPE_EXIT_CRITICAL() portEXIT_CRITICAL()
-	#define portTICK_TYPE_SET_INTERRUPT_MASK_FROM_ISR() portSET_INTERRUPT_MASK_FROM_ISR()
-	#define portTICK_TYPE_CLEAR_INTERRUPT_MASK_FROM_ISR( x ) portCLEAR_INTERRUPT_MASK_FROM_ISR( ( x ) )
+//	#define portTICK_TYPE_ENTER_CRITICAL() portENTER_CRITICAL()
+//	#define portTICK_TYPE_EXIT_CRITICAL() portEXIT_CRITICAL()
+//	#define portTICK_TYPE_SET_INTERRUPT_MASK_FROM_ISR() portSET_INTERRUPT_MASK_FROM_ISR()
+//	#define portTICK_TYPE_CLEAR_INTERRUPT_MASK_FROM_ISR( x ) portCLEAR_INTERRUPT_MASK_FROM_ISR( ( x ) )
 #else
 	/* The tick type can be read atomically, so critical sections used when the
 	tick count is returned can be defined away. */
-	#define portTICK_TYPE_ENTER_CRITICAL()
-	#define portTICK_TYPE_EXIT_CRITICAL()
-	#define portTICK_TYPE_SET_INTERRUPT_MASK_FROM_ISR() 0
-	#define portTICK_TYPE_CLEAR_INTERRUPT_MASK_FROM_ISR( x ) ( void ) x
+//	#define portTICK_TYPE_ENTER_CRITICAL()
+//	#define portTICK_TYPE_EXIT_CRITICAL()
+//	#define portTICK_TYPE_SET_INTERRUPT_MASK_FROM_ISR() 0
+//	#define portTICK_TYPE_CLEAR_INTERRUPT_MASK_FROM_ISR( x ) ( void ) x
 #endif
 
 /* Definitions to allow backward compatibility with FreeRTOS versions prior to

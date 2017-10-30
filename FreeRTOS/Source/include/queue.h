@@ -1517,9 +1517,9 @@ BaseType_t xQueueGiveMutexRecursive( QueueHandle_t pxMutex ) ;
  * stores a pointer to the string - so the string must be persistent (global or
  * preferably in ROM/Flash), not on the stack.
  */
-#if configQUEUE_REGISTRY_SIZE > 0
-	void vQueueAddToRegistry( QueueHandle_t xQueue, const char *pcName ) ; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
-#endif
+//#if configQUEUE_REGISTRY_SIZE > 0
+//	void vQueueAddToRegistry( QueueHandle_t xQueue, const char *pcName ) ; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+//#endif
 
 /*
  * The registry is provided as a means for kernel aware debuggers to
@@ -1531,9 +1531,9 @@ BaseType_t xQueueGiveMutexRecursive( QueueHandle_t pxMutex ) ;
  *
  * @param xQueue The handle of the queue being removed from the registry.
  */
-#if configQUEUE_REGISTRY_SIZE > 0
-	void vQueueUnregisterQueue( QueueHandle_t xQueue ) ;
-#endif
+//#if configQUEUE_REGISTRY_SIZE > 0
+//	void vQueueUnregisterQueue( QueueHandle_t xQueue ) ;
+//#endif
 
 /*
  * Generic version of the queue creation function, which is in turn called by

@@ -12,7 +12,7 @@
 /* Defining MPU_WRAPPERS_INCLUDED_FROM_API_FILE prevents task.h from redefining
 all the API functions to use the MPU wrappers.  That should only be done when
 task.h is included from an application file. */
-#define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
+//#define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
 /* FreeRTOS includes. */
 #include "FreeRTOS.h"
@@ -22,7 +22,7 @@ task.h is included from an application file. */
 MPU ports require MPU_WRAPPERS_INCLUDED_FROM_API_FILE to be defined for the
 header files above, but not in this file, in order to generate the correct
 privileged Vs unprivileged linkage and placement. */
-#undef MPU_WRAPPERS_INCLUDED_FROM_API_FILE /*lint !e961 !e750. */
+//#undef MPU_WRAPPERS_INCLUDED_FROM_API_FILE /*lint !e961 !e750. */
 
 
 /*
@@ -38,13 +38,13 @@ privileged Vs unprivileged linkage and placement. */
 	#define taskYIELD_IF_USING_PREEMPTION() portYIELD_WITHIN_API()
 #endif
 
-/* Value that can be assigned to the eNotifyState member of the TCB. */
-typedef enum
-{
-	eNotWaitingNotification = 0,
-	eWaitingNotification,
-	eNotified
-} eNotifyValue;
+///* Value that can be assigned to the eNotifyState member of the TCB. */
+//typedef enum
+//{
+//	eNotWaitingNotification = 0,
+//	eWaitingNotification,
+//	eNotified
+//} eNotifyValue;
 
 /*
  * Task control block.  A task control block (TCB) is allocated for each task,
@@ -55,16 +55,15 @@ typedef struct tskTaskControlBlock
 {
 	volatile StackType_t	*pxTopOfStack;	/*< Points to the location of the last item placed on the tasks stack.  THIS MUST BE THE FIRST MEMBER OF THE TCB STRUCT. */
 
-	#if ( portUSING_MPU_WRAPPERS == 1 )
-		xMPU_SETTINGS	xMPUSettings;		/*< The MPU settings are defined as part of the port layer.  THIS MUST BE THE SECOND MEMBER OF THE TCB STRUCT. */
-		BaseType_t		xUsingStaticallyAllocatedStack; /* Set to pdTRUE if the stack is a statically allocated array, and pdFALSE if the stack is dynamically allocated. */
-	#endif
+//	#if ( portUSING_MPU_WRAPPERS == 1 )
+//		xMPU_SETTINGS	xMPUSettings;		/*< The MPU settings are defined as part of the port layer.  THIS MUST BE THE SECOND MEMBER OF THE TCB STRUCT. */
+//		BaseType_t		xUsingStaticallyAllocatedStack; /* Set to pdTRUE if the stack is a statically allocated array, and pdFALSE if the stack is dynamically allocated. */
+//	#endif
 
 	ListItem_t			xGenericListItem;	/*< The list that the state list item of a task is reference from denotes the state of that task (Ready, Blocked, Suspended ). */
 	ListItem_t			xEventListItem;		/*< Used to reference a task from an event list. */
 	UBaseType_t			uxPriority;			/*< The priority of the task.  0 is the lowest priority. */
 	StackType_t			*pxStack;			/*< Points to the start of the stack. */
-
 
 } tskTCB;
 
@@ -72,13 +71,13 @@ typedef struct tskTaskControlBlock
 below to enable the use of older kernel aware debuggers. */
 typedef tskTCB TCB_t;
 
-/*
- * Some kernel aware debuggers require the data the debugger needs access to to
- * be global, rather than file scope.
- */
-#ifdef portREMOVE_STATIC_QUALIFIER
-	#define static
-#endif
+///*
+// * Some kernel aware debuggers require the data the debugger needs access to to
+// * be global, rather than file scope.
+// */
+//#ifdef portREMOVE_STATIC_QUALIFIER
+//	#define static
+//#endif
 
 /*lint -e956 A manual analysis and inspection has been used to determine which
 static variables must be declared volatile. */
@@ -122,15 +121,15 @@ accessed from a critical section. */
  * The value used to fill the stack of a task when the task is created.  This
  * is used purely for checking the high water mark for tasks.
  */
-#define tskSTACK_FILL_BYTE	( 0xa5U )
+//#define tskSTACK_FILL_BYTE	( 0xa5U )
 
 /*
  * Macros used by vListTask to indicate which state a task is in.
  */
-#define tskBLOCKED_CHAR		( 'B' )
-#define tskREADY_CHAR		( 'R' )
-#define tskDELETED_CHAR		( 'D' )
-#define tskSUSPENDED_CHAR	( 'S' )
+//#define tskBLOCKED_CHAR		( 'B' )
+//#define tskREADY_CHAR		( 'R' )
+//#define tskDELETED_CHAR		( 'D' )
+//#define tskSUSPENDED_CHAR	( 'S' )
 
 /*-----------------------------------------------------------*/
 
@@ -675,43 +674,43 @@ BaseType_t xAlreadyYielded = pdFALSE;
 }
 /*-----------------------------------------------------------*/
 
-TickType_t xTaskGetTickCount( void )
-{
-TickType_t xTicks;
+//TickType_t xTaskGetTickCount( void )
+//{
+//TickType_t xTicks;
 
-	/* Critical section required if running on a 16 bit processor. */
-	portTICK_TYPE_ENTER_CRITICAL();
-	{
-		xTicks = xTickCount;
-	}
-	portTICK_TYPE_EXIT_CRITICAL();
+//	/* Critical section required if running on a 16 bit processor. */
+////	portTICK_TYPE_ENTER_CRITICAL();
+//	{
+//		xTicks = xTickCount;
+//	}
+////	portTICK_TYPE_EXIT_CRITICAL();
 
-	return xTicks;
-}
+//	return xTicks;
+//}
 /*-----------------------------------------------------------*/
 
-TickType_t xTaskGetTickCountFromISR( void )
-{
-TickType_t xReturn;
-UBaseType_t uxSavedInterruptStatus;
+//TickType_t xTaskGetTickCountFromISR( void )
+//{
+//TickType_t xReturn;
+////UBaseType_t uxSavedInterruptStatus;
 
 
-	uxSavedInterruptStatus = portTICK_TYPE_SET_INTERRUPT_MASK_FROM_ISR();
-	{
-		xReturn = xTickCount;
-	}
-	portTICK_TYPE_CLEAR_INTERRUPT_MASK_FROM_ISR( uxSavedInterruptStatus );
+////	uxSavedInterruptStatus = portTICK_TYPE_SET_INTERRUPT_MASK_FROM_ISR();
+//	{
+//		xReturn = xTickCount;
+//	}
+////	portTICK_TYPE_CLEAR_INTERRUPT_MASK_FROM_ISR( uxSavedInterruptStatus );
 
-	return xReturn;
-}
+//	return xReturn;
+//}
 /*-----------------------------------------------------------*/
 
-UBaseType_t uxTaskGetNumberOfTasks( void )
-{
-	/* A critical section is not required because the variables are of type
-	BaseType_t. */
-	return uxCurrentNumberOfTasks;
-}
+//UBaseType_t uxTaskGetNumberOfTasks( void )
+//{
+//	/* A critical section is not required because the variables are of type
+//	BaseType_t. */
+//	return uxCurrentNumberOfTasks;
+//}
 /*-----------------------------------------------------------*/
 
 /*----------------------------------------------------------*/

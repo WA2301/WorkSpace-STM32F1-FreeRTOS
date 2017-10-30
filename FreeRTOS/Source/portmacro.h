@@ -119,7 +119,7 @@ not necessary for to use this port.  They are defined so the common demo files
 //#endif
 
 /* portNOP() is not required by this port. */
-#define portNOP()
+//#define portNOP()
 
 #ifdef __cplusplus
 }
