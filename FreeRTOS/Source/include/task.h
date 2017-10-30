@@ -198,55 +198,19 @@ is used in assert() statements. */
 
 #define xTaskCreateRestricted( x, pxCreatedTask ) xTaskGenericCreate( ((x)->pvTaskCode), ((x)->pcName), ((x)->usStackDepth), ((x)->pvParameters), ((x)->uxPriority), (pxCreatedTask), ((x)->puxStackBuffer), ((x)->xRegions) )
 
-void vTaskAllocateMPURegions( TaskHandle_t xTask, const MemoryRegion_t * const pxRegions ) PRIVILEGED_FUNCTION;
-
-void vTaskDelete( TaskHandle_t xTaskToDelete ) PRIVILEGED_FUNCTION;
 
 void vTaskDelay( const TickType_t xTicksToDelay ) PRIVILEGED_FUNCTION;
 
 void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
 
-UBaseType_t uxTaskPriorityGet( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-
-UBaseType_t uxTaskPriorityGetFromISR( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-
-eTaskState eTaskGetState( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-
-void vTaskPrioritySet( TaskHandle_t xTask, UBaseType_t uxNewPriority ) PRIVILEGED_FUNCTION;
-
-void vTaskSuspend( TaskHandle_t xTaskToSuspend ) PRIVILEGED_FUNCTION;
-
-void vTaskResume( TaskHandle_t xTaskToResume ) PRIVILEGED_FUNCTION;
-
-BaseType_t xTaskResumeFromISR( TaskHandle_t xTaskToResume ) PRIVILEGED_FUNCTION;
-
 void vTaskStartScheduler( void ) PRIVILEGED_FUNCTION;
 
-void vTaskEndScheduler( void ) PRIVILEGED_FUNCTION;
+
 
 void vTaskSuspendAll( void ) PRIVILEGED_FUNCTION;
 
 BaseType_t xTaskResumeAll( void ) PRIVILEGED_FUNCTION;
 
-TickType_t xTaskGetTickCount( void ) PRIVILEGED_FUNCTION;
-
-TickType_t xTaskGetTickCountFromISR( void ) PRIVILEGED_FUNCTION;
-
-UBaseType_t uxTaskGetNumberOfTasks( void ) PRIVILEGED_FUNCTION;
-
-char *pcTaskGetTaskName( TaskHandle_t xTaskToQuery ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
-
-UBaseType_t uxTaskGetStackHighWaterMark( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-
-BaseType_t xTaskCallApplicationTaskHook( TaskHandle_t xTask, void *pvParameter ) PRIVILEGED_FUNCTION;
-
-TaskHandle_t xTaskGetIdleTaskHandle( void ) PRIVILEGED_FUNCTION;
-
-UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime ) PRIVILEGED_FUNCTION;
-
-void vTaskList( char * pcWriteBuffer ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
-
-void vTaskGetRunTimeStats( char *pcWriteBuffer ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
 
 BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue ) PRIVILEGED_FUNCTION;
 #define xTaskNotify( xTaskToNotify, ulValue, eAction ) xTaskGenericNotify( ( xTaskToNotify ), ( ulValue ), ( eAction ), NULL )
@@ -268,110 +232,12 @@ BaseType_t xTaskNotifyStateClear( TaskHandle_t xTask );
 
 BaseType_t xTaskIncrementTick( void ) PRIVILEGED_FUNCTION;
 
-void vTaskPlaceOnEventList( List_t * const pxEventList, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-void vTaskPlaceOnUnorderedEventList( List_t * pxEventList, const TickType_t xItemValue, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-
-void vTaskPlaceOnEventListRestricted( List_t * const pxEventList, const TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
-
-BaseType_t xTaskRemoveFromEventList( const List_t * const pxEventList ) PRIVILEGED_FUNCTION;
-BaseType_t xTaskRemoveFromUnorderedEventList( ListItem_t * pxEventListItem, const TickType_t xItemValue ) PRIVILEGED_FUNCTION;
-
-void vTaskSwitchContext( void ) PRIVILEGED_FUNCTION;
-
-/*
- * THESE FUNCTIONS MUST NOT BE USED FROM APPLICATION CODE.  THEY ARE USED BY
- * THE EVENT BITS MODULE.
- */
-TickType_t uxTaskResetEventItemValue( void ) PRIVILEGED_FUNCTION;
-
-/*
- * Return the handle of the calling task.
- */
-TaskHandle_t xTaskGetCurrentTaskHandle( void ) PRIVILEGED_FUNCTION;
-
-/*
- * Capture the current time status for future reference.
- */
-void vTaskSetTimeOutState( TimeOut_t * const pxTimeOut ) PRIVILEGED_FUNCTION;
-
-/*
- * Compare the time status now with that previously captured to see if the
- * timeout has expired.
- */
-BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut, TickType_t * const pxTicksToWait ) PRIVILEGED_FUNCTION;
-
-/*
- * Shortcut used by the queue implementation to prevent unnecessary call to
- * taskYIELD();
- */
-void vTaskMissedYield( void ) PRIVILEGED_FUNCTION;
-
-/*
- * Returns the scheduler state as taskSCHEDULER_RUNNING,
- * taskSCHEDULER_NOT_STARTED or taskSCHEDULER_SUSPENDED.
- */
-BaseType_t xTaskGetSchedulerState( void ) PRIVILEGED_FUNCTION;
-
-/*
- * Raises the priority of the mutex holder to that of the calling task should
- * the mutex holder have a priority less than the calling task.
- */
-void vTaskPriorityInherit( TaskHandle_t const pxMutexHolder ) PRIVILEGED_FUNCTION;
-
-/*
- * Set the priority of a task back to its proper priority in the case that it
- * inherited a higher priority while it was holding a semaphore.
- */
-BaseType_t xTaskPriorityDisinherit( TaskHandle_t const pxMutexHolder ) PRIVILEGED_FUNCTION;
-
 /*
  * Generic version of the task creation function which is in turn called by the
  * xTaskCreate() and xTaskCreateRestricted() macros.
  */
 BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
 
-/*
- * Get the uxTCBNumber assigned to the task referenced by the xTask parameter.
- */
-UBaseType_t uxTaskGetTaskNumber( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-
-/*
- * Set the uxTaskNumber of the task referenced by the xTask parameter to
- * uxHandle.
- */
-void vTaskSetTaskNumber( TaskHandle_t xTask, const UBaseType_t uxHandle ) PRIVILEGED_FUNCTION;
-
-/*
- * Only available when configUSE_TICKLESS_IDLE is set to 1.
- * If tickless mode is being used, or a low power mode is implemented, then
- * the tick interrupt will not execute during idle periods.  When this is the
- * case, the tick count value maintained by the scheduler needs to be kept up
- * to date with the actual execution time by being skipped forward by a time
- * equal to the idle period.
- */
-void vTaskStepTick( const TickType_t xTicksToJump ) PRIVILEGED_FUNCTION;
-
-/*
- * Only avilable when configUSE_TICKLESS_IDLE is set to 1.
- * Provided for use within portSUPPRESS_TICKS_AND_SLEEP() to allow the port
- * specific sleep function to determine if it is ok to proceed with the sleep,
- * and if it is ok to proceed, if it is ok to sleep indefinitely.
- *
- * This function is necessary because portSUPPRESS_TICKS_AND_SLEEP() is only
- * called with the scheduler suspended, not from within a critical section.  It
- * is therefore possible for an interrupt to request a context switch between
- * portSUPPRESS_TICKS_AND_SLEEP() and the low power mode actually being
- * entered.  eTaskConfirmSleepModeStatus() should be called from a short
- * critical section between the timer being stopped and the sleep mode being
- * entered to ensure it is ok to proceed into the sleep mode.
- */
-eSleepModeStatus eTaskConfirmSleepModeStatus( void ) PRIVILEGED_FUNCTION;
-
-/*
- * For internal use only.  Increment the mutex held count when a mutex is
- * taken and return the handle of the task that has taken the mutex.
- */
-void *pvTaskIncrementMutexHeldCount( void ) PRIVILEGED_FUNCTION;
 
 #ifdef __cplusplus
 }
