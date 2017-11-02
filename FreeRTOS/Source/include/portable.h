@@ -18,36 +18,9 @@ must be set in the compiler's include path. */
 	#include "portmacro.h"
 #endif
 
-#if portBYTE_ALIGNMENT == 32
-	#define portBYTE_ALIGNMENT_MASK ( 0x001f )
-#endif
-
-#if portBYTE_ALIGNMENT == 16
-	#define portBYTE_ALIGNMENT_MASK ( 0x000f )
-#endif
 
 #if portBYTE_ALIGNMENT == 8
 	#define portBYTE_ALIGNMENT_MASK ( 0x0007 )
-#endif
-
-#if portBYTE_ALIGNMENT == 4
-	#define portBYTE_ALIGNMENT_MASK	( 0x0003 )
-#endif
-
-#if portBYTE_ALIGNMENT == 2
-	#define portBYTE_ALIGNMENT_MASK	( 0x0001 )
-#endif
-
-#if portBYTE_ALIGNMENT == 1
-	#define portBYTE_ALIGNMENT_MASK	( 0x0000 )
-#endif
-
-#ifndef portBYTE_ALIGNMENT_MASK
-	#error "Invalid portBYTE_ALIGNMENT definition"
-#endif
-
-#ifndef portNUM_CONFIGURABLE_REGIONS
-	#define portNUM_CONFIGURABLE_REGIONS 1
 #endif
 
 #ifdef __cplusplus
@@ -64,9 +37,9 @@ extern "C" {
  */
 void *pvPortMalloc( size_t xSize ) ;
 void vPortFree( void *pv ) ;
-void vPortInitialiseBlocks( void ) ;
+//void vPortInitialiseBlocks( void ) ;
 size_t xPortGetFreeHeapSize( void ) ;
-size_t xPortGetMinimumEverFreeHeapSize( void ) ;
+//size_t xPortGetMinimumEverFreeHeapSize( void ) ;
 
 /*
  * Setup the hardware ready for the scheduler to take control.  This generally

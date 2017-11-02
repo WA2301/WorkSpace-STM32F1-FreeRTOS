@@ -11,8 +11,7 @@
 #include "stm32f10x_app.h"
 #include "FreeRTOS.h"
 #include "task.h"
-#include "queue.h"
-#include "croutine.h"
+
 
 u32 test;
 
@@ -32,7 +31,7 @@ struct
 }Test;
 
 
-portTickType xLastWakeTime = 0xFFFFFFFF - 5000;
+TickType_t xLastWakeTime = 0xFFFFFFFF - 5000;
 /**
  * @brief		Task00 program.
  * @function  	None

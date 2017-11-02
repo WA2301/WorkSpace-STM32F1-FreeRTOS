@@ -34,22 +34,19 @@ typedef portSTACK_TYPE StackType_t;
 typedef long BaseType_t;
 typedef unsigned long UBaseType_t;
 
-//#if( configUSE_16_BIT_TICKS == 1 )
-//	typedef uint16_t TickType_t;
-//	#define portMAX_DELAY ( TickType_t ) 0xffff
-//#else
+
 	typedef uint32_t TickType_t;
 	#define portMAX_DELAY ( TickType_t ) 0xffffffffUL
 
 	/* 32-bit tick type on a 32-bit architecture, so reads of the tick count do
 	not need to be guarded with a critical section. */
 	#define portTICK_TYPE_IS_ATOMIC 1
-//#endif
+
 /*-----------------------------------------------------------*/
 
 /* Architecture specifics. */
 #define portSTACK_GROWTH			( -1 )
-#define portTICK_PERIOD_MS			( ( TickType_t ) 1000 / configTICK_RATE_HZ )
+//#define portTICK_PERIOD_MS			( ( TickType_t ) 1000 / configTICK_RATE_HZ )
 #define portBYTE_ALIGNMENT			8
 /*-----------------------------------------------------------*/
 
@@ -77,10 +74,10 @@ extern void vPortExitCritical( void );
 /*-----------------------------------------------------------*/
 
 /* Tickless idle/low power functionality. */
-#ifndef portSUPPRESS_TICKS_AND_SLEEP
-	extern void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime );
-	#define portSUPPRESS_TICKS_AND_SLEEP( xExpectedIdleTime ) vPortSuppressTicksAndSleep( xExpectedIdleTime )
-#endif
+//#ifndef portSUPPRESS_TICKS_AND_SLEEP
+//	extern void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime );
+//	#define portSUPPRESS_TICKS_AND_SLEEP( xExpectedIdleTime ) vPortSuppressTicksAndSleep( xExpectedIdleTime )
+//#endif
 /*-----------------------------------------------------------*/
 
 /* Port specific optimisations. *///此宏定义不要删除

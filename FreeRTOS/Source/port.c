@@ -19,15 +19,15 @@
 	#error configMAX_SYSCALL_INTERRUPT_PRIORITY must not be set to 0.  See http://www.FreeRTOS.org/RTOS-Cortex-M3-M4.html
 #endif
 
-#ifndef configSYSTICK_CLOCK_HZ
+//#ifndef configSYSTICK_CLOCK_HZ
 	#define configSYSTICK_CLOCK_HZ configCPU_CLOCK_HZ
 	/* Ensure the SysTick is clocked at the same frequency as the core. */
 	#define portNVIC_SYSTICK_CLK_BIT	( 1UL << 2UL )
-#else
-	/* The way the SysTick is clocked is not modified in case it is not the same
-	as the core. */
-	#define portNVIC_SYSTICK_CLK_BIT	( 0 )
-#endif
+//#else
+//	/* The way the SysTick is clocked is not modified in case it is not the same
+//	as the core. */
+//	#define portNVIC_SYSTICK_CLK_BIT	( 0 )
+//#endif
 
 /* The __weak attribute does not work as you might expect with the Keil tools
 so the configOVERRIDE_DEFAULT_TICK_CONFIGURATION constant must be set to 1 if

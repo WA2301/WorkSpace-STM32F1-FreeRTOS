@@ -28,7 +28,7 @@ privileged Vs unprivileged linkage and placement. */
 /*
  * Defines the size, in words, of the stack allocated to the idle task.
  */
-#define tskIDLE_STACK_SIZE	configMINIMAL_STACK_SIZE
+#define tskIDLE_STACK_SIZE	( ( unsigned short ) 130 )//Min size
 
 #if( configUSE_PREEMPTION == 0 )
 	/* If the cooperative scheduler is being used then a yield should not be
@@ -387,18 +387,17 @@ StackType_t *pxTopOfStack;
 
 			uxTaskNumber++;
 
-//			traceTASK_CREATE( pxNewTCB );
 
 			prvAddTaskToReadyList( pxNewTCB );
 
 			xReturn = pdPASS;
-			portSETUP_TCB( pxNewTCB );
+            
 		}
 		taskEXIT_CRITICAL();
 	}
 	else
 	{
-		xReturn = errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY;
+		xReturn = -1;//errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY;
 	}
 
 	if( xReturn == pdPASS )
