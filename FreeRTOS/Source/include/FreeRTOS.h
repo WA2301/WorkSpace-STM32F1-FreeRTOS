@@ -31,56 +31,39 @@ extern "C" {
 #endif
 
 /* Application specific configuration options. */
-#include "FreeRTOSConfig.h"
 
-/*
- * Defines the prototype to which task functions must conform.  Defined in this
- * file to ensure the type is known before portable.h is included.
- */
-typedef void (*TaskFunction_t)( void * );
 
-#define pdFALSE			( ( BaseType_t ) 0 )
-#define pdTRUE			( ( BaseType_t ) 1 )
+///*
+// * Defines the prototype to which task functions must conform.  Defined in this
+// * file to ensure the type is known before portable.h is included.
+// */
+//typedef void (*TaskFunction_t)( void * );
 
-#define pdPASS			( pdTRUE )
-#define pdFAIL			( pdFALSE )
-   
-    
-    
-    
-    
-/* Definitions specific to the port being used. */
-#include "portable.h"
+//#define pdFALSE			( ( BaseType_t ) 0 )
+//#define pdTRUE			( ( BaseType_t ) 1 )
+
+//#define pdPASS			( pdTRUE )
+//#define pdFAIL			( pdFALSE )
+//  
 
 
 
-#ifndef portPOINTER_SIZE_TYPE
-	#define portPOINTER_SIZE_TYPE uint32_t
-#endif
-
-#ifndef portPRIVILEGE_BIT
-	#define portPRIVILEGE_BIT ( ( UBaseType_t ) 0x00 )
-#endif
-
-//#ifndef portYIELD_WITHIN_API
-//	#define portYIELD_WITHIN_API portYIELD
+//#ifndef portPOINTER_SIZE_TYPE
+//	#define portPOINTER_SIZE_TYPE uint32_t
 //#endif
 
-#ifndef pvPortMallocAligned
-	#define pvPortMallocAligned( x, puxStackBuffer ) ( ( ( puxStackBuffer ) == NULL ) ? ( pvPortMalloc( ( x ) ) ) : ( puxStackBuffer ) )
-#endif
 
-#ifndef vPortFreeAligned
-	#define vPortFreeAligned( pvBlockToFree ) vPortFree( pvBlockToFree )
-#endif
+//#ifndef pvPortMallocAligned
+//	#define pvPortMallocAligned( x, puxStackBuffer ) ( ( ( puxStackBuffer ) == NULL ) ? ( pvPortMalloc( ( x ) ) ) : ( puxStackBuffer ) )
+//#endif
 
-/* Set configUSE_TASK_FPU_SUPPORT to 0 to omit floating point support even
-if floating point hardware is otherwise supported by the FreeRTOS port in use.
-This constant is not supported by all FreeRTOS ports that include floating 
-point support. */
-#ifndef configUSE_TASK_FPU_SUPPORT
-	#define configUSE_TASK_FPU_SUPPORT 1
-#endif
+///* Set configUSE_TASK_FPU_SUPPORT to 0 to omit floating point support even
+//if floating point hardware is otherwise supported by the FreeRTOS port in use.
+//This constant is not supported by all FreeRTOS ports that include floating 
+//point support. */
+//#ifndef configUSE_TASK_FPU_SUPPORT
+//	#define configUSE_TASK_FPU_SUPPORT 1
+//#endif
 
 #ifdef __cplusplus
 }

@@ -9,35 +9,17 @@
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
 
-/*-----------------------------------------------------------
- * Application specific definitions.
- *
- * These definitions should be adjusted for your particular hardware and
- * application requirements.
- *
- * THESE PARAMETERS ARE DESCRIBED WITHIN THE 'CONFIGURATION' SECTION OF THE
- * FreeRTOS API DOCUMENTATION AVAILABLE ON THE FreeRTOS.org WEB SITE.
- *
- * See http://www.freertos.org/a00110.html.
- *----------------------------------------------------------*/
 
-/* Ensure stdint is only used by the compiler, and not the assembler. */
-//#ifdef __ICCARM__
-	#include <stdint.h>
-	extern uint32_t SystemCoreClock;
-//#endif
+#include <stdint.h>
+extern uint32_t SystemCoreClock;
 
-#define configUSE_PREEMPTION			1//1 为抢占式 0为 时间片轮训
 #define configCPU_CLOCK_HZ				( SystemCoreClock )
 #define configTICK_RATE_HZ				( ( TickType_t ) 1000 )
-#define configMAX_PRIORITIES			( 5 )
-//#define configMINIMAL_STACK_SIZE		( ( unsigned short ) 130 )
+#define configMAX_PRIORITIES			( 5 )//系统建议<32
 #define configTOTAL_HEAP_SIZE			( ( size_t ) ( 17 * 1024 ) )
-#define configUSE_16_BIT_TICKS			0
-#define configIDLE_SHOULD_YIELD			0
 
 
-#define INCLUDE_vTaskDelay				1
+//#define INCLUDE_vTaskDelay				1
 
 /* Cortex-M specific definitions. */
 #ifdef __NVIC_PRIO_BITS

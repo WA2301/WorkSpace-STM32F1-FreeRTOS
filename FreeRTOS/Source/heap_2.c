@@ -11,7 +11,6 @@ all the API functions to use the MPU wrappers.  That should only be done when
 task.h is included from an application file. */
 #define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
-#include "FreeRTOS.h"
 #include "task.h"
 
 #undef MPU_WRAPPERS_INCLUDED_FROM_API_FILE
@@ -180,12 +179,7 @@ BlockLink_t *pxLink;
 		( void ) xTaskResumeAll();
 	}
 }
-/*-----------------------------------------------------------*/
 
-size_t xPortGetFreeHeapSize( void )
-{
-	return xFreeBytesRemaining;
-}
 /*-----------------------------------------------------------*/
 
 static void prvHeapInit( void )

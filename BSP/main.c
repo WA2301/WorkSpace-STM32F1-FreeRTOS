@@ -21,6 +21,8 @@
 
 void Task00( void *pvParameters ) ;
 
+void Task02( void *pvParameters ) ;
+
 
 /**
   * @brief  Main program.
@@ -33,6 +35,7 @@ int main(void)
     /************* Task00 Creation ************************************************/
 //  xTaskCreate       ( Task00, ( const char * ) "", 1000, NULL, 1, NULL );
     xTaskGenericCreate( Task00, 1000, 1 );
+    xTaskGenericCreate( Task02, 1000, 2 );
 
     vTaskStartScheduler();
 
