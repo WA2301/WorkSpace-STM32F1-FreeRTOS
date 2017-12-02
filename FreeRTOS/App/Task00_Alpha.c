@@ -13,6 +13,8 @@
 #include "task.h"
 
 
+float f_test = 1.0f;
+
 u32 test;
 
 struct 
@@ -63,6 +65,7 @@ void Task00( void *pvParameters )
     {
 		//TODO:
 
+        f_test += 0.1f;
 		test++;
 		*GPO_BAND(GPIOC_BASE, 13) ^= 1;
         
