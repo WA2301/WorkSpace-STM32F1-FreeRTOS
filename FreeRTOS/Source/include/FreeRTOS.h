@@ -62,9 +62,9 @@ typedef void (*TaskFunction_t)( void * );
 	#define portPRIVILEGE_BIT ( ( UBaseType_t ) 0x00 )
 #endif
 
-#ifndef portYIELD_WITHIN_API
-	#define portYIELD_WITHIN_API portYIELD
-#endif
+//#ifndef portYIELD_WITHIN_API
+//	#define portYIELD_WITHIN_API portYIELD
+//#endif
 
 #ifndef pvPortMallocAligned
 	#define pvPortMallocAligned( x, puxStackBuffer ) ( ( ( puxStackBuffer ) == NULL ) ? ( pvPortMalloc( ( x ) ) ) : ( puxStackBuffer ) )

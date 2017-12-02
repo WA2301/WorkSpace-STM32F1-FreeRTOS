@@ -31,8 +31,8 @@ int main(void)
 {
 
     /************* Task00 Creation ************************************************/
-    xTaskCreate( Task00, ( const char * ) "LED1_Task", 1000, NULL, 1, NULL );
-
+//  xTaskCreate       ( Task00, ( const char * ) "", 1000, NULL, 1, NULL );
+    xTaskGenericCreate( Task00, 1000, 1 );
 
     vTaskStartScheduler();
 

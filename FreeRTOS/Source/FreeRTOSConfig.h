@@ -37,7 +37,6 @@
 #define configIDLE_SHOULD_YIELD			0
 
 
-#define INCLUDE_vTaskDelayUntil			1
 #define INCLUDE_vTaskDelay				1
 
 /* Cortex-M specific definitions. */

@@ -87,7 +87,7 @@ typedef enum
  * \defgroup taskYIELD taskYIELD
  * \ingroup SchedulerControl
  */
-#define taskYIELD()					portYIELD()
+//#define taskYIELD()					portYIELD()
 
 /**
  * task. h
@@ -146,14 +146,15 @@ is used in assert() statements. */
 #define taskSCHEDULER_RUNNING		( ( BaseType_t ) 2 )
 
 
-#define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+//#define xTaskCreate(          pvTaskCode  ,   pcName  ,   usStackDepth  ,   pvParameters  ,   uxPriority  ,   pxCreatedTask ) \
+        xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
 
-#define xTaskCreateRestricted( x, pxCreatedTask ) xTaskGenericCreate( ((x)->pvTaskCode), ((x)->pcName), ((x)->usStackDepth), ((x)->pvParameters), ((x)->uxPriority), (pxCreatedTask), ((x)->puxStackBuffer), ((x)->xRegions) )
+//#define xTaskCreateRestricted( x, pxCreatedTask ) xTaskGenericCreate( ((x)->pvTaskCode), ((x)->pcName), ((x)->usStackDepth), ((x)->pvParameters), ((x)->uxPriority), (pxCreatedTask), ((x)->puxStackBuffer), ((x)->xRegions) )
 
 
 void vTaskDelay( const TickType_t xTicksToDelay ) ;
 
-void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) ;
+//void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) ;
 
 void vTaskStartScheduler( void ) ;
 
@@ -169,7 +170,9 @@ BaseType_t xTaskIncrementTick( void ) ;
  * Generic version of the task creation function which is in turn called by the
  * xTaskCreate() and xTaskCreateRestricted() macros.
  */
-BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode, const char * const pcName, const uint16_t usStackDepth, void * const pvParameters, UBaseType_t uxPriority, TaskHandle_t * const pxCreatedTask, StackType_t * const puxStackBuffer, const MemoryRegion_t * const xRegions ) ; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+BaseType_t xTaskGenericCreate( TaskFunction_t pxTaskCode,   \
+                               const uint16_t usStackDepth, \
+                               UBaseType_t uxPriority ) ; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
 
 
 #ifdef __cplusplus

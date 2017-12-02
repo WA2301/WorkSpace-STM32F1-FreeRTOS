@@ -69,11 +69,11 @@ void Task00( void *pvParameters )
 		test++;
 		*GPO_BAND(GPIOC_BASE, 13) ^= 1;
         
-        vTaskDelay( 500 );
+        vTaskDelay( 1000 );
                 
-		*GPO_BAND(GPIOC_BASE, 13) ^= 1;
-        
-        vTaskDelayUntil( &xLastWakeTime , 1000 );
+//		*GPO_BAND(GPIOC_BASE, 13) ^= 1;
+//        
+//        vTaskDelayUntil( &xLastWakeTime , 1000 );
 		/******************************************************************************/
 	} //for
 }
